@@ -79,7 +79,7 @@ h1,h2{font-family:var(--display);font-weight:700;line-height:1.45;text-wrap:bala
 h3{font-family:var(--body);font-weight:600;line-height:1.6;text-wrap:balance;font-size:1.15rem}
 h2{font-size:clamp(1.9rem,4.4vw,2.8rem);margin-bottom:.8em}
 p+p{margin-top:1.4em}
-body{counter-reset:eb}
+body{counter-reset:eb 1}
 .eyebrow{display:inline-flex;align-items:center;gap:.9em;font-family:var(--ui);font-size:.85rem;font-weight:500;color:var(--gold-lo);margin-bottom:1.4rem}
 .eyebrow::before{counter-increment:eb;content:counter(eb,arabic-indic);font-family:var(--display);font-size:1.25rem;line-height:1;padding-inline-end:.9em;border-inline-end:1px solid var(--hair)}
 .hl{color:var(--gold)}
@@ -502,9 +502,129 @@ footer p+p{margin-top:.6em}
   .chain-labels span{font-size:.85rem}
   .chain-labels .up{display:none}
 }
+
+/* ================= v7: hierarchy + reading momentum ================= */
+.alt{background:var(--bg-2)}
+.light .day-panel{background:var(--paper)}
+/* reading progress */
+.progress{position:fixed;top:0;inset-inline:0;height:3px;z-index:60;pointer-events:none}
+.progress i{display:block;height:100%;width:0;background:var(--foil);transition:width .12s linear}
+.pchip{position:fixed;top:12px;left:max(12px,env(safe-area-inset-left));z-index:60;font-family:var(--ui);font-size:.74rem;color:var(--gold-lo);background:rgba(255,253,248,.94);border:1px solid var(--hair);padding:.3em .85em;opacity:0;transform:translateY(-6px);transition:opacity .3s,transform .3s;pointer-events:none}
+.pchip.show{opacity:1;transform:none}
+/* type levels: display > h3 > body */
+.display{font-family:var(--display);font-weight:700;font-size:clamp(2.3rem,6vw,4.3rem);line-height:1.32;text-wrap:balance;margin-bottom:.55em;color:var(--ink)}
+.display.s{font-size:clamp(1.9rem,4.8vw,3.2rem)}
+.display em{font-style:normal;background:var(--foil-ink);-webkit-background-clip:text;background-clip:text;color:transparent}
+.sub{font-size:clamp(1.1rem,2.2vw,1.3rem);line-height:2;color:var(--fg-soft);max-width:34em}
+.center .sub{margin-inline:auto}
+u.k{text-decoration:none;background:linear-gradient(transparent 60%,rgba(201,164,92,.4) 60%);color:var(--ink);font-weight:600;padding:0 .12em;-webkit-box-decoration-break:clone;box-decoration-break:clone}
+.pz{font-family:var(--display);font-size:clamp(1.35rem,3vw,1.8rem);line-height:1.7;color:var(--gold-lo);margin:0 auto 1.4rem;max-width:26em}
+/* bridges between sections */
+.bridge{display:flex;flex-direction:column;align-items:center;gap:.8rem;margin:clamp(70px,9vw,110px) auto 0;text-align:center;text-decoration:none;font-family:var(--display);font-size:clamp(1.35rem,3vw,1.75rem);line-height:1.6;color:var(--gold-lo);max-width:22em}
+.bridge::after{content:"";width:1px;height:52px;background:linear-gradient(var(--gold),transparent);transform-origin:top;animation:drip 2.2s ease-in-out infinite}
+.bridge:hover{color:var(--ink)}
+@keyframes drip{0%{transform:scaleY(0)}60%{transform:scaleY(1);opacity:1}100%{transform:scaleY(1);opacity:0}}
+/* hero */
+.hero-price{display:flex;align-items:baseline;gap:.7em;flex-wrap:wrap;margin:0 0 1.2rem;font-family:var(--ui)}
+.hero-price b{font-family:var(--display);font-size:2.4rem;line-height:1;background:var(--foil-ink);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-price s{color:var(--fg-mute);font-size:1rem}
+.hero-price span{font-size:.85rem;color:var(--fg-mute)}
+.deadline{font-family:var(--ui);font-size:.85rem;font-weight:600;color:#A8402F}
+.tlink{font-family:var(--ui);font-size:.95rem;color:var(--gold-lo);text-decoration:none;border-bottom:1px solid var(--hair);padding-bottom:2px;align-self:center}
+.tlink:hover{color:var(--ink);border-color:var(--gold)}
+/* phone mockup */
+.device{position:relative;display:grid;place-items:center;padding:30px 0}
+.phone-wrap{position:relative;width:min(260px,64vw)}
+.phone{aspect-ratio:9/18.5;border-radius:40px;padding:10px;background:linear-gradient(145deg,#F2E7CF,#CDB68A 55%,#EADCBC);box-shadow:0 60px 90px -45px rgba(90,60,20,.6),inset 0 0 0 1px rgba(255,255,255,.7);position:relative;animation:float 7s ease-in-out infinite}
+.phone::before{content:"";position:absolute;top:19px;left:50%;width:64px;height:17px;margin-left:-32px;border-radius:10px;background:#2A241D;z-index:3}
+.screen{position:relative;height:100%;border-radius:31px;overflow:hidden;background:var(--paper)}
+.screen .cover{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:space-between;align-items:center;text-align:center;padding:30% 13% 15%;background:radial-gradient(90% 55% at 50% 105%,rgba(201,164,92,.28),transparent 70%),linear-gradient(160deg,#FFFCF5,#F1E7D5 75%)}
+.screen .cover::before{content:"";position:absolute;inset:14% 8% 6%;border:1px solid rgba(154,116,50,.5);pointer-events:none}
+.screen .cover .c-title{font-size:clamp(1.9rem,6vw,2.4rem)}
+.device .sticker{top:8%;left:-44px}
+.device .sheet{right:-54px;bottom:10%;width:62%}
+/* bonus thumbnails */
+.item{grid-template-columns:52px 1fr auto}
+.thumb{width:44px;height:58px;background:var(--paper);border:1px solid var(--hair);box-shadow:0 10px 18px -12px rgba(90,60,20,.55);position:relative;overflow:hidden;justify-self:center}
+.t-book{background:linear-gradient(160deg,#FFFCF5,#EFE3CC);display:grid;place-items:center}
+.t-book span{font-family:var(--mark);font-size:.62rem;line-height:1.1;color:var(--gold-lo);text-align:center}
+.t-book::before{content:"";position:absolute;inset:4px;border:1px solid rgba(154,116,50,.45)}
+.t-two{box-shadow:5px -5px 0 -1px var(--paper),5px -5px 0 0 var(--hair),0 10px 18px -12px rgba(90,60,20,.55);overflow:visible}
+.t-lines{background:repeating-linear-gradient(180deg,transparent 0 6px,rgba(154,116,50,.35) 6px 7px) content-box,var(--paper);padding:10px 8px}
+.t-chat::before,.t-chat::after{content:"";position:absolute;height:9px;border-radius:5px;background:rgba(154,116,50,.3)}
+.t-chat::before{top:12px;right:6px;width:26px}
+.t-chat::after{top:28px;left:6px;width:22px;background:rgba(154,116,50,.55)}
+.t-play::before{content:"";position:absolute;top:12px;left:50%;margin-left:-6px;border-style:solid;border-width:7px 0 7px 12px;border-color:transparent transparent transparent var(--gold)}
+.t-play::after{content:"";position:absolute;inset:32px 8px 8px;background:repeating-linear-gradient(180deg,rgba(154,116,50,.35) 0 1px,transparent 1px 6px)}
+.t-grid{background:repeating-linear-gradient(90deg,transparent 0 5px,var(--paper) 5px 7px) content-box,repeating-linear-gradient(0deg,rgba(154,116,50,.42) 0 5px,var(--paper) 5px 7px) content-box;padding:9px 6px}
+.t-map::before{content:"";position:absolute;top:10px;left:50%;width:22px;height:22px;margin-left:-11px;border-radius:50%;border:1px solid var(--gold)}
+.t-map::after{content:"";position:absolute;top:18px;left:50%;width:6px;height:6px;margin-left:-3px;border-radius:50%;background:var(--gold);box-shadow:0 22px 0 -1px rgba(154,116,50,.4),8px 26px 0 -2px rgba(154,116,50,.3),-8px 26px 0 -2px rgba(154,116,50,.3)}
+.t-gauge::before{content:"";position:absolute;top:14px;left:50%;width:28px;height:14px;margin-left:-14px;border:2px solid var(--gold);border-bottom:0;border-radius:28px 28px 0 0}
+.t-gauge::after{content:"";position:absolute;inset:36px 8px 8px;background:repeating-linear-gradient(180deg,rgba(154,116,50,.35) 0 1px,transparent 1px 6px)}
+/* book excerpt */
+.excerpt{max-width:640px;margin:3.2rem auto 0;background:var(--paper);border:1px solid var(--hair-light);box-shadow:0 50px 90px -60px rgba(90,60,20,.6),14px 14px 0 -7px var(--ivory),14px 14px 0 -6px var(--hair-light);padding:clamp(28px,5vw,56px);text-align:start;position:relative}
+.excerpt .ex-tag{position:absolute;top:-14px;right:24px;font-family:var(--ui);font-size:.75rem;background:var(--foil);color:#17120A;padding:.3em .9em}
+.excerpt h3{font-size:1.35rem;color:var(--ink);padding-bottom:.6rem;margin-bottom:1rem;border-bottom:1px solid var(--hair-light)}
+.excerpt p{font-size:1.02rem;line-height:2;color:var(--fg-soft);max-width:none}
+.excerpt p+p{margin-top:.9em}
+.excerpt b{color:var(--ink)}
+.excerpt .take{background:var(--ivory);border-inline-start:3px solid var(--gold);padding:14px 18px;margin-top:1.4rem;font-size:.98rem;line-height:1.9}
+.excerpt .pg{text-align:center;font-family:var(--ui);color:var(--gold-lo);font-size:.85rem;margin-top:1.6rem}
+/* table of contents */
+.toc{list-style:none;display:grid;grid-template-columns:1fr 1fr;column-gap:48px;margin-top:2.4rem;border-top:1px solid var(--hair-light);text-align:start}
+.toc li{display:grid;grid-template-columns:40px 1fr;gap:12px;padding:18px 6px;border-bottom:1px solid var(--hair-light);transition:background .3s}
+.toc .n{font-family:var(--display);font-weight:700;font-size:1.5rem;color:var(--gold-lo);line-height:1.2}
+.toc h3{font-size:1.02rem;line-height:1.6;margin-bottom:.15em}
+.toc p{font-size:.92rem;line-height:1.8;color:var(--ink-mute)}
+.toc li.rec{background:var(--gold-soft);box-shadow:inset 3px 0 0 var(--gold)}
+.toc li.rec h3::after{content:"  ← ابدأ من هنا";font-family:var(--ui);font-size:.75rem;font-weight:600;color:#A8402F;white-space:nowrap}
+.toc-h{font-family:var(--display);font-size:1.6rem;margin-top:4.5rem;text-align:center}
+/* chain lights up link by link */
+.chain .link,.chain .arrow{opacity:.25;transition:opacity .5s ease,background .5s ease}
+.chain.in .link,.chain.in .arrow{opacity:1}
+.chain.in > :nth-child(2){transition-delay:.25s}.chain.in > :nth-child(3){transition-delay:.45s}
+.chain.in > :nth-child(4){transition-delay:.7s}.chain.in > :nth-child(5){transition-delay:.9s}
+.chain.in > :nth-child(6){transition-delay:1.15s}.chain.in > :nth-child(7){transition-delay:1.35s}
+.chain.in > :nth-child(8){transition-delay:1.6s}.chain.in > :nth-child(9){transition-delay:1.8s}
+/* fit (for you / not for you) */
+.fit{display:grid;grid-template-columns:1.2fr .8fr;gap:clamp(24px,4vw,48px);margin-top:4.5rem;text-align:start}
+.fit h3{font-family:var(--display);font-size:1.45rem;font-weight:700;margin-bottom:1rem}
+.fit .quotes{list-style:none;display:grid;gap:14px}
+.fit .quotes li{font-family:var(--quote);font-size:1.4rem;line-height:1.6;color:var(--ink);padding-inline-start:1rem;border-inline-start:2px solid var(--gold)}
+.fit .no-list{padding-inline-start:1.1em;display:grid;gap:10px;color:var(--ink-mute);font-size:.98rem;line-height:1.85}
+/* proofs (hidden until real screenshots are added) */
+.proofs{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:16px;margin-top:2rem}
+.proofs img{width:100%;height:auto;border:1px solid var(--hair);background:var(--paper)}
+@media (max-width:900px){
+  .fit{grid-template-columns:1fr}
+  .device .sticker{left:-18px}
+  .device .sheet{right:-22px}
+}
+@media (max-width:640px){
+  .hero-price{justify-content:center}
+  .tlink{display:inline-block;margin-top:.4rem}
+  .toc{grid-template-columns:1fr}
+  .item{grid-template-columns:46px 1fr}
+  .phone-wrap{width:min(220px,60vw)}
+  .device .sticker{left:-14px}
+  .device .sheet{right:-16px;width:58%}
+  .pchip{top:10px}
+}
+
+/* ---------- CTA strips (between sections) ---------- */
+.cta-strip{background:linear-gradient(180deg,var(--paper),var(--ivory));border-top:1px solid var(--hair);border-bottom:1px solid var(--hair);padding:clamp(48px,7vw,72px) 0;text-align:center;position:relative}
+.cta-strip::before{content:"";position:absolute;inset:0 0 auto;height:2px;background:var(--foil)}
+.cta-strip h2{font-family:var(--display);font-size:clamp(1.6rem,4vw,2.3rem);line-height:1.5;margin-bottom:.4em;color:var(--ink)}
+.cta-strip h2 em{font-style:normal;background:var(--foil-ink);-webkit-background-clip:text;background-clip:text;color:transparent}
+.cta-strip .cs-sub{font-size:1.02rem;line-height:1.9;color:var(--ink-mute);margin:0 auto 1.4rem;max-width:32em}
+.cta-strip .hero-price{justify-content:center;margin-bottom:1.2rem}
+.cta-strip .btn{min-width:min(340px,100%)}
 </style>
 </head>
 <body>
+
+<div class="progress" aria-hidden="true"><i id="prog"></i></div>
+<div class="pchip" id="pchip" aria-hidden="true"></div>
 
 <div class="masthead">
   <div class="wrap mh">
@@ -516,8 +636,8 @@ footer p+p{margin-top:.6em}
   </div>
 </div>
 
-<!-- ================= HERO ================= -->
-<header class="hero grain" id="top">
+<!-- ================= 1 · HERO ================= -->
+<header class="hero grain" id="top" data-page="hero">
   <div class="wrap hero-grid">
     <div class="rv">
       <div class="pill">كتاب PDF بالعامية <i></i> تحدي 30 يوم</div>
@@ -527,46 +647,43 @@ footer p+p{margin-top:.6em}
         <div class="row" role="listitem"><span class="from">كلمة من حد بتبوّظ يومك كله</span><span class="ar" aria-hidden="true">←</span><span class="to">مفتاح راحتك في إيدك إنت</span></div>
         <div class="row" role="listitem"><span class="from">أفكار بتحرّكك من غير ما تاخد بالك</span><span class="ar" aria-hidden="true">←</span><span class="to">بتفهمها وتوقفها قبل ما تحرّكك</span></div>
         <div class="row" role="listitem"><span class="from">«هبدأ من أول الشهر» بقالك سنين</span><span class="ar" aria-hidden="true">←</span><span class="to">خطوة صغيرة كل يوم، 10–30 دقيقة</span></div>
+        <div class="row" role="listitem"><span class="from">بتصلي بسرعة ودماغك في حتة تانية</span><span class="ar" aria-hidden="true">←</span><span class="to">بتقف في الصلاة وإنت عارف إنك في حوار</span></div>
       </div>
-      <p class="lead">«من أنا… وِلَم أنا؟»: 9 فصول بالعامية، وبعدها خطة 30 يوم. كل يوم فيها مهمة واحدة صغيرة.</p>
+      <div class="hero-price"><b>299ج</b><s>499ج</s><span>سعر الافتتاح</span><span class="deadline" data-deadline hidden></span></div>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="#offer">ابدأ التحدي بـ 299ج <small>بدل 499</small></a>
-        <a class="btn btn-ghost" href="#meterSec">شغّل عدّاد عمرك</a>
+        <a class="btn btn-primary" href="#offer">احصل على الكتاب وابدأ التحدي</a>
+        <a class="tlink" href="#quiz">أو جاوب 6 أسئلة الأول (دقيقة) ↓</a>
       </div>
-      <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>تحويل فودافون كاش · إنستاباي</span><span>بيوصلك على واتساب</span></div>
+      <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>إنستاباي أو أي محفظة</span><span>بيوصلك على واتساب</span></div>
       <p class="credit">مبني على أفكار دورة «من أنا وِلَم أنا؟» للدكتور عبد الرحمن ذاكر الهاشمي، ومشروح بأسلوب جديد ومعاه تمارين وقوالب ونظام تطبيق.</p>
     </div>
-    <div class="book-stage rv" aria-hidden="true">
-      <div class="sticker"><div><b>٣٠</b>يوم تحدي</div></div>
-      <div class="book">
-        <div class="cover">
+    <div class="device rv" aria-hidden="true">
+      <div class="phone-wrap">
+        <div class="sticker"><div><b>٣٠</b>يوم تحدي</div></div>
+        <div class="phone"><div class="screen"><div class="cover">
           <div class="c-top">رحلة من «عايش» إلى «عارف ليه عايش»</div>
           <div class="c-title">من أنا…<span>وِلَم أنا؟</span></div>
-          <div>
-            <div class="emblem"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width=".6" opacity=".55"/><circle cx="20" cy="16.4" r="3.6" fill="currentColor"/><path d="M18.1 18.6h3.8l1.4 9.2h-6.6z" fill="currentColor"/></svg></div>
-            <div class="c-sub">كتاب بالعامية · Playbook 30 يوم</div>
-          </div>
+          <div><div class="emblem"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width=".6" opacity=".55"/><circle cx="20" cy="16.4" r="3.6" fill="currentColor"/><path d="M18.1 18.6h3.8l1.4 9.2h-6.6z" fill="currentColor"/></svg></div><div class="c-sub">كتاب بالعامية · Playbook 30 يوم</div></div>
+        </div></div></div>
+        <div class="sheet">
+          <b>ورقة التحدي · الأسبوع 1</b>
+          <div class="g"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
         </div>
-        <div class="spine"></div>
-      </div>
-      <div class="sheet">
-        <b>ورقة التحدي · الأسبوع 1</b>
-        <div class="g"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ================= QUIZ ================= -->
-<section class="quiz" id="quiz">
+<!-- ================= 2 · QUIZ ================= -->
+<section class="quiz" id="quiz" data-page="quiz">
   <div class="narrow">
     <div class="eyebrow">قبل أي حاجة</div>
-    <h2>اقرا السطور دي بهدوء… <span class="hl">وعلّم على اللي يشبهك</span></h2>
-    <p class="muted">مفيش حد هيشوف إجاباتك. الصدق هنا هو كل حاجة.</p>
+    <h2 class="display s">علّم على اللي <em>يشبهك.</em></h2>
+    <p class="sub">مفيش حد هيشوف إجاباتك. والصدق هنا هو كل حاجة.</p>
     <div class="quiz-card">
       <ul class="signs" id="signs">
         <li><label class="sign"><input type="checkbox"><span class="box"><svg viewBox="0 0 16 16" fill="none" stroke="#1d1204" stroke-width="3"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span>بعمل حاجات كتير، وفي الآخر فيه ضيق من غير سبب واضح.</span></label></li>
-        <li><label class="sign"><input type="checkbox"><span class="box"><svg viewBox="0 0 16 16" fill="none" stroke="#1d1204" stroke-width="3"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span>عارف إني لازم أتغيّر، بس بأجّل: «بعد رمضان»، «من أول الشهر»، «لما الظروف تتحسن».</span></label></li>
+        <li><label class="sign"><input type="checkbox"><span class="box"><svg viewBox="0 0 16 16" fill="none" stroke="#1d1204" stroke-width="3"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span>عارف إني لازم أتغيّر، بس بأجّل: «بعد رمضان»، «من أول الشهر».</span></label></li>
         <li><label class="sign"><input type="checkbox"><span class="box"><svg viewBox="0 0 16 16" fill="none" stroke="#1d1204" stroke-width="3"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span>إحساسي بنفسي بيطلع وينزل حسب كلام الناس عني.</span></label></li>
         <li><label class="sign"><input type="checkbox"><span class="box"><svg viewBox="0 0 16 16" fill="none" stroke="#1d1204" stroke-width="3"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span>لما حد يضايقني، بفضل أعيد الموقف في دماغي بالساعات.</span></label></li>
         <li><label class="sign"><input type="checkbox"><span class="box"><svg viewBox="0 0 16 16" fill="none" stroke="#1d1204" stroke-width="3"><path d="M3 8.5l3.2 3L13 4.5"/></svg></span><span>عندي إحساس خفي بالوحدة… حتى وأنا وسط الناس.</span></label></li>
@@ -576,35 +693,48 @@ footer p+p{margin-top:.6em}
         <p class="muted">علّم على اللي يشبهك وهتظهرلك النتيجة هنا.</p>
       </div>
     </div>
+    <a class="bridge" href="#day">خليني أحكيلك عن يومك…<br>وصحّحني لو غلطت.</a>
   </div>
 </section>
 
-<!-- ================= YOUR DAY ================= -->
-<section>
+<!-- ================= 3 · YOUR DAY ================= -->
+<section id="day" data-page="day">
   <div class="narrow">
-    <div class="eyebrow">خليني أحكيلك عن يومك</div>
-    <h2>وصحّحني لو غلطت.</h2>
+    <div class="eyebrow">يومك</div>
+    <h2 class="display s">يوم شبه اللي قبله… <em>وإنت عارف كده.</em></h2>
     <div class="timeline">
-      <div class="tl rv"><div class="clock">7:00</div><p>بتصحى والموبايل في إيدك قبل ما عينك تفتح. ستوري لحد مسافر، وحد اترقّى، وحد اتخطب. ولسه ماقمتش من السرير، ويومك بدأ بإحساس إنك <b>متأخر عن حاجة مش عارف هي إيه.</b></p></div>
-      <div class="tl rv"><div class="clock">11:00</div><p>حد قال كلمة في اجتماع. بتفضل تقلّبها طول اليوم: هو كان يقصدني؟ وبترد عليه في دماغك عشر ردود… بعد ما الموقف خلص بساعتين.</p></div>
-      <div class="tl rv"><div class="clock">7:00 م</div><p>البيت. حد عايز منك حاجة، وحد زعلان منك، وإنت بتحاول ترضي الكل. وفي الآخر محدش راضي… ولا إنت.</p></div>
-      <div class="tl rv"><div class="clock">1:00 ص</div><p>البيت هدي. وبييجي الإحساس اللي بتهرب منه طول اليوم: ضيقة. مش حزن ومش انهيار. ضيقة كده، زي ما يكون فيه حاجة ناقصة. فبتمسك الموبايل… فيديو وبعده فيديو، لحد ما تنام. <b>وتاني يوم، نفس اليوم.</b></p></div>
+      <div class="tl rv"><div class="clock">7:00</div><p>بتصحى والموبايل في إيدك. ستوري لحد مسافر، وحد اترقّى… ويومك بدأ بإحساس إنك <u class="k">متأخر عن حاجة مش عارف هي إيه.</u></p></div>
+      <div class="tl rv"><div class="clock">11:00</div><p>كلمة اتقالت في اجتماع. بتقلّبها طول اليوم، وبترد عليها في دماغك عشر ردود… بعد ما الموقف خلص بساعتين.</p></div>
+      <div class="tl rv"><div class="clock">7:00 م</div><p>حد عايز منك حاجة، وحد زعلان منك. بتحاول ترضي الكل… <u class="k">ومحدش راضي، ولا إنت.</u></p></div>
+      <div class="tl rv"><div class="clock">1:00 ص</div><p>البيت هدي، والضيقة جت. فيديو ورا فيديو لحد ما تنام. <u class="k">وتاني يوم، نفس اليوم.</u></p></div>
     </div>
-    <p class="punch rv">وإنت مش وحش. بالعكس: بتحاول، وقلبك طيب، وعارف الصح من الغلط.<br><span class="hl">ويمكن ده اللي بيوجع أكتر… إنك فاهم.</span></p>
+    <p class="display s rv" style="margin-top:4.5rem">إنت مش وحش. إنت فاهم…<br><em>ويمكن ده اللي بيوجع أكتر.</em></p>
     <div class="callout rv">
-      <p>سمعت محاضرات، وقريت بوستات، وحفظت جمل حلوة عن الرضا والطمأنينة. بس الفهم ده عامل زي <b>ورقة في جيبك</b>، مش حاجة ساكنة جواك. والكتاب ده معمول علشان يحوّل الورقة دي لحاجة بتعيشها كل يوم.</p>
+      <p>الفهم اللي عندك عامل زي <b>ورقة في جيبك</b>، مش حاجة ساكنة جواك. والكتاب ده معمول علشان يحوّل الورقة دي لحاجة بتعيشها كل يوم.</p>
     </div>
+    <a class="bridge" href="#meterSec">والأيام دي بتتعد…<br>شوف بنفسك كام واحد عدّى.</a>
   </div>
 </section>
 
-<!-- ================= REFRAME ================= -->
-<section class="reframe" id="meterSec">
+<!-- ================= CTA 1 ================= -->
+<div class="cta-strip">
+  <div class="narrow">
+    <h2>بلاش بكره يبقى <em>نفس اليوم.</em></h2>
+    <p class="cs-sub">كتاب بالعامية + تحدي 30 يوم، كل يوم خطوة واحدة من 10 لـ 30 دقيقة.</p>
+    <div class="hero-price"><b>299ج</b><s>499ج</s><span>سعر الافتتاح</span><span class="deadline" data-deadline hidden></span></div>
+    <a class="btn btn-primary" href="#offer" data-cta="1">ابدأ التحدي النهارده بـ 299ج</a>
+    <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>إنستاباي أو أي محفظة</span><span>بيوصلك على واتساب</span></div>
+  </div>
+</div>
+
+<!-- ================= 4 · LIFE METER ================= -->
+<section class="reframe" id="meterSec" data-page="meter">
   <div class="wrap split">
     <div class="rv">
-      <div class="eyebrow">أول حاجة الكتاب هيغيّرها فيك</div>
-      <p class="bigquote">الضيق اللي من غير سبب <span>مش عقاب…</span><br>ده جرس بيقولك: اتحرك.</p>
-      <p>جواك عدّاد شغال من يوم ما اتولدت. الزمن بيمشي، وجسمك بيتغيّر، وإنت واقف في نفس المكان. <b>والمسافة بينك وبين الزمن هي اللي بتوجع.</b></p>
-      <p class="muted">تخيّل إنك راكب تاكسي والعدّاد شغال. حتى لو قعدت ساكت وماتحركتش… العدّاد بيعد. وكل ما تتأخر في القرار، الفاتورة بتكبر.</p>
+      <div class="eyebrow">عدّاد عمرك</div>
+      <h2 class="display s">جواك عدّاد شغال <em>من يوم ما اتولدت.</em></h2>
+      <p class="sub">زي عدّاد التاكسي: حتى لو قعدت ساكت وماتحركتش، العدّاد بيعد. <u class="k">والمسافة بينك وبين الزمن هي اللي بتوجع.</u></p>
+      <p class="bigquote" style="font-size:clamp(1.4rem,3vw,1.8rem);margin-top:1.4rem">الضيق اللي من غير سبب <span>مش عقاب…</span><br>ده جرس بيقولك: اتحرك.</p>
     </div>
     <div class="meter rv" id="lifeMeter">
       <div class="m-head"><b>عدّاد عمرك</b><span class="live">شغّال دلوقتي</span></div>
@@ -628,29 +758,20 @@ footer p+p{margin-top:.6em}
           <div><b id="uS">00</b><span>ثانية</span></div>
         </div>
         <div class="m-sec">يعني عشت لحد اللحظة دي<b id="uT">0</b>ثانية… و<span id="uDays">0</span> يوم.</div>
-        <div class="q">كام يوم منهم كنت إنت اللي سايق؟</div>
+        <div class="q">السؤال مش «هتتغيّر ولا لأ».<br>السؤال: مين اللي سايق؟</div>
         <button class="m-reset" id="mReset" type="button">غيّر التاريخ</button>
       </div>
     </div>
   </div>
-  <div class="wrap">
-    <div class="story-box rv">
-      <div>
-        <div class="tag-l">حكاية من الكتاب</div>
-        <h3>الطفاية</h3>
-        <p class="muted">واحد عمل حفلة. كل ضيف جاب هدية، وهو حطها في المخزن من غير ما يفتحها. بعد الحفلة البيت ولّع. فضل يجري يدوّر على طفاية ومش لاقي، واتصل بالمطافي. ولما الحريقة خلصت دخل المخزن… ولقى طفاية. <b style="color:var(--gold-hi)">كانت عنده من الأول.</b></p>
-        <p>دماغك كده بالظبط: مليانة حاجات صح، بس محدش علّمك تفتحها وترتّبها. والكتاب ده بيقعد معاك على الأرض ويفتح المخزن رف رف.</p>
-      </div>
-    </div>
-  </div>
+  <div class="wrap"><a class="bridge" href="#why">طب لو عارف كل ده…<br>ليه كل محاولة قبل كده فشلت؟</a></div>
 </section>
 
-<!-- ================= WHY YOU FAILED ================= -->
-<section class="light">
+<!-- ================= 5 · WHY YOU FAILED ================= -->
+<section class="light" id="why" data-page="why">
   <div class="narrow center">
-    <div class="eyebrow">طب ليه جربت قبل كده وفشلت؟</div>
-    <h2>إنت مش بتفشل عشان مش عايز.<br><span style="color:var(--amber-2)">بتفشل عشان بتحارب العادة من آخرها.</span></h2>
-    <p class="muted lead">كل مرة: تقرر تبطّل حاجة، تشد على نفسك أسبوع، وبعدين ترجع وتلوم نفسك أكتر من الأول. لأن السلوك هو <b>آخر حلقة</b> في سلسلة بدأت بخاطرة صغيرة عدّت في دماغك من سنين وماوقفتش عندها.</p>
+    <div class="eyebrow">ليه فشلت قبل كده؟</div>
+    <h2 class="display s">إنت مش بتفشل عشان مش عايز.<br><em>بتفشل عشان بتحارب العادة من آخرها.</em></h2>
+    <p class="sub">السلوك هو <u class="k">آخر حلقة</u> في سلسلة بدأت بخاطرة صغيرة عدّت في دماغك من سنين، وماوقفتش عندها.</p>
     <div class="chain rv">
       <span class="link first">خاطرة</span><span class="arrow">←</span>
       <span class="link">فكرة</span><span class="arrow">←</span>
@@ -659,17 +780,29 @@ footer p+p{margin-top:.6em}
       <span class="link">عادة</span>
     </div>
     <div class="chain-labels"><span><i class="up">↑ </i>الكتاب بيبدأ من هنا</span><span>كل محاولاتك القديمة بدأت من هنا<i class="up"> ↑</i></span></div>
-    <div class="callout rv" style="text-align:start;background:var(--paper);border-color:var(--hair-light);margin-top:2.4rem">
-      <p><b>من الكتاب:</b> فيه واحد كان كل ما يتناقش مع حد، نَفَسه يتقطّع ويتعصّب. لما سألوه «الحوار بالنسبالك إيه؟» قال: «حرب، ولازم أكسب». الحل ماكانش «اهدى». الحل كان إنه يغيّر الفكرة دي نفسها… <b>ولما الفكرة اتغيّرت، الهدوء جه لوحده.</b></p>
+    <div class="callout rv" style="text-align:start;background:var(--paper);border-color:var(--hair-light);margin-top:2.6rem">
+      <p><b>من الكتاب:</b> واحد كان كل ما يتناقش مع حد يتعصّب. سألوه: «الحوار بالنسبالك إيه؟» قال: «حرب، ولازم أكسب». الحل ماكانش «اهدى»… <u class="k">الحل كان إنه يغيّر الفكرة نفسها، والهدوء جه لوحده.</u></p>
     </div>
+    <a class="bridge" href="#keys">والفكرة اللي هتغيّر ده كله<br>بتبدأ بسؤال واحد: مين ماسك مفتاحك؟</a>
   </div>
 </section>
 
-<!-- ================= LIFE LINE / KEYS ================= -->
-<section class="light" style="padding-top:0">
+<!-- ================= CTA 2 ================= -->
+<div class="cta-strip">
+  <div class="narrow">
+    <h2>المرة دي ابدأ من <em>أول حلقة.</em></h2>
+    <p class="cs-sub">مش بالعافية ولا بالحماس. 9 فصول بتبدأ من الخاطرة، وخطة 30 يوم بتكمّل معاك بعد ما الحماس يخلص.</p>
+    <div class="hero-price"><b>299ج</b><s>499ج</s><span>سعر الافتتاح</span><span class="deadline" data-deadline hidden></span></div>
+    <a class="btn btn-primary" href="#offer" data-cta="2">احصل على الكتاب وابدأ التحدي</a>
+    <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>بيوصلك على واتساب</span></div>
+  </div>
+</div>
+
+<!-- ================= 6 · KEYS ================= -->
+<section class="paper" id="keys" data-page="keys">
   <div class="wrap center">
-    <div class="eyebrow">الفكرة اللي هتريّح نص حياتك</div>
-    <h2>فيه ترتيب واحد لحياتك…<br>لو اتظبط، كل ده يهدى.</h2>
+    <div class="eyebrow">الفكرة اللي هتريّحك</div>
+    <h2 class="display s">فيه ترتيب واحد لحياتك…<br><em>لو اتظبط، كل ده يهدى.</em></h2>
     <div class="lifeline rv">
       <div class="node n1"><div>الله<small>المرجع</small></div></div>
       <span class="ll-arrow">←</span>
@@ -677,172 +810,152 @@ footer p+p{margin-top:.6em}
       <span class="ll-arrow">←</span>
       <div class="node"><div>الآخر<small>أهلي وناسي</small></div></div>
     </div>
-    <p class="muted lead narrow" style="width:auto;max-width:640px">لما الترتيب ده يتلخبط، مفاتيح راحتك بتروح لإيد غيرك: كلمة من مديرك، أو تعليق على فيسبوك، أو نبرة صوت حد قريب… تبوّظ يومك كله.</p>
+    <p class="sub">لما الترتيب ده يتلخبط، مفاتيح راحتك بتروح لإيد غيرك، و<u class="k">كلمة واحدة من حد تبوّظ يومك كله.</u></p>
     <div class="keys">
-      <div class="card rv" style="text-align:start"><div class="k">١</div><h3>مين ماسك مفتاحك؟</h3><p>جرد بسيط هيوريك مين بيتحكم في مزاجك من غير ما تاخد بالك، وإزاي ترجّع المفتاح من غير ما تخسر حد.</p></div>
-      <div class="card rv" style="text-align:start"><div class="k">٢</div><h3>زعلان منه… ولا عليه؟</h3><p>سؤال واحد لو جاوبته بصدق، هيغيّر طريقة ردك على أي كلمة جارحة، ونص خناقاتك هتختفي.</p></div>
-      <div class="card rv" style="text-align:start"><div class="k">٣</div><h3>صلاتك حوار</h3><p>الفاتحة مش كلام بتخلّصه. كل آية ليها رد. فصل كامل بيحوّل الصلاة والأذكار لمحطات بتشحنك وسط يومك.</p></div>
+      <div class="card rv" style="text-align:start"><div class="k">١</div><h3>مين ماسك مفتاحك؟</h3><p>جرد بسيط يوريك مين بيتحكم في مزاجك، وإزاي ترجّع المفتاح من غير ما تخسر حد.</p></div>
+      <div class="card rv" style="text-align:start"><div class="k">٢</div><h3>زعلان منه… ولا عليه؟</h3><p>سؤال واحد يغيّر طريقة ردك على أي كلمة جارحة.</p></div>
+      <div class="card rv" style="text-align:start"><div class="k">٣</div><h3>صلاتك حوار</h3><p>الفاتحة مش كلام بتخلّصه. كل آية ليها رد، والصلاة تبقى محطة بتشحنك.</p></div>
     </div>
+    <div class="story-box rv" style="text-align:start">
+      <div class="tag-l">حكاية من الكتاب</div>
+      <h3>الطفاية</h3>
+      <p class="muted">واحد بيته ولّع. فضل يجري يدوّر على طفاية ومش لاقي. ولما الحريقة خلصت دخل المخزن… ولقى طفاية جت له هدية من زمان. <b style="color:var(--gold-hi)">كانت عنده من الأول.</b></p>
+      <p>دماغك كده بالظبط: <u class="k">مليانة حاجات صح، بس محدش علّمك تفتحها وترتّبها.</u></p>
+    </div>
+    <a class="bridge" href="#inside">الكلام ده مكتوب إزاي جوه الكتاب؟<br>اقرا صفحة حقيقية منه.</a>
   </div>
 </section>
 
-<!-- ================= BEFORE / AFTER ================= -->
-<section>
-  <div class="wrap">
-    <div class="center">
-      <div class="eyebrow">مش وعود فاضية</div>
-      <h2>دي قدرات هتبنيها فصل بفصل</h2>
-    </div>
-    <div class="ba">
-      <div class="ba-col ba-before rv">
-        <h3>إنت دلوقتي</h3>
-        <ul>
-          <li>كل خاطرة بتعدّي في دماغك بتاخدها على إنها حقيقة.</li>
-          <li>كلمة واحدة من حد ممكن تبوّظ يومك.</li>
-          <li>بتتحمس يومين بعد محاضرة… وبعدين ترجع زي ما إنت.</li>
-          <li>بتصلي بسرعة ودماغك في حتة تانية.</li>
-          <li>بتقول «من أول الشهر» بقالك سنين.</li>
-          <li>بتنام ودماغك مليانة ملفات مفتوحة.</li>
-        </ul>
-      </div>
-      <div class="ba-col ba-after rv">
-        <h3>بعد آخر صفحة</h3>
-        <ul>
-          <li>عندك «فرملة» صغيرة: الكلام ده جاي منين؟ ومرجعي في الحكم عليه إيه؟</li>
-          <li>عارف مين ماسك مفاتيحك، وبترجّعها لإيدك.</li>
-          <li>عندك نظام صغير بيكمّل معاك بعد ما الحماس يخلص.</li>
-          <li>بتقف في الصلاة وإنت عارف إنك في حوار.</li>
-          <li>بتبدأ النهارده… حتى لو بدأت غلط.</li>
-          <li>بتقفل ملف واحد كل ليلة، وبتنام ودماغك أهدى.</li>
-        </ul>
-      </div>
-    </div>
+<!-- ================= 7 · INSIDE THE BOOK ================= -->
+<section id="inside" data-page="inside">
+  <div class="wrap center">
+    <div class="eyebrow">جوه الكتاب</div>
+    <h2 class="display s">اقرا صفحة <em>من الكتاب نفسه.</em></h2>
+    <p class="sub">دي صفحة 10 زي ما هي. بالعامية، وكأنها بتتكلم معاك إنت.</p>
+    <article class="excerpt rv">
+      <span class="ex-tag">من الفصل الأول</span>
+      <h3>صفحة واحدة تغيّر زاويتك</h3>
+      <p>تخيّل إنك قاعد مع صاحبك، وبيبصلك باستغراب وبيقولك: <b>«إنت شكلك سعيد!»</b></p>
+      <p>والغريب إن الجملة دي طلعت منه كأنها اتهام. كأن السعادة بقت حاجة مشبوهة محتاجة تحقيق.</p>
+      <p>وبعدين بيكمّل: «ما حوالينا مفيهاش حاجة تفرّح». وإنت عارف الأجوبة الجاهزة دي كويس: الغلا، الشغل، البلد، الظروف.</p>
+      <p>لكن لو سألت نفسك سؤال واحد بصدق: <b>هل سعادتي بتيجي من اللي حواليّا، ولا من اللي جوّايا؟</b></p>
+      <p>السؤال ده هو بداية الكتاب كله. وهو كمان بداية رحلة اسمها: <b>كيف تولد من جديد.</b></p>
+      <div class="take"><b>اللي هتاخده من الصفحة دي:</b> ابدأ تسأل «ليه أنا حاسس كده؟» بدل «مين السبب؟». أول ما السؤال يتغيّر، يبدأ التغيير.</div>
+      <div class="pg">— ١٠ —</div>
+    </article>
+    <h3 class="toc-h">و9 فصول بالترتيب ده</h3>
+    <ol class="toc" id="toc">
+      <li><span class="n">١</span><div><h3>الخاطرة اللي عدّت من غير ما تحس</h3><p>تبطّل تاخد أفكارك على إنها حقايق.</p></div></li>
+      <li><span class="n">٢</span><div><h3>إنت بتتغيّر</h3><p>التغيير مش الخطر… التوقف هو الخطر.</p></div></li>
+      <li><span class="n">٣</span><div><h3>التلات أدوات اللي جواك</h3><p>الفطرة ← المعرفة ← العلم.</p></div></li>
+      <li><span class="n">٤</span><div><h3>مين اللي ماسك مفاتيحك؟</h3><p>خط الحياة وجرد المفاتيح. أقوى فصل في الكتاب.</p></div></li>
+      <li><span class="n">٥</span><div><h3>محطات التزكية</h3><p>الصلاة والأذكار كمحطات بتشحنك وسط يومك.</p></div></li>
+      <li><span class="n">٦</span><div><h3>سبع حجج بتوقّف الناس</h3><p>كل حجة بتقولك إيه… وإزاي ترد عليها.</p></div></li>
+      <li><span class="n">٧</span><div><h3>الناس</h3><p>ليه بنحس بالوحدة، وإزاي تقرا اللي قدامك.</p></div></li>
+      <li><span class="n">٨</span><div><h3>إزاي تكسب القلوب</h3><p>تقبّل، إنصات، حوار… من غير تكبّر ولا تذلل.</p></div></li>
+      <li><span class="n">٩</span><div><h3>من الفكرة للحياة</h3><p>همّة ← خطة ← تنفيذ ← قياس… ولحد الرضا.</p></div></li>
+    </ol>
+    <a class="bridge" href="#playbook">والمرة دي مش هتقرا وتقفل…</a>
   </div>
 </section>
 
-<!-- ================= CHAPTERS ================= -->
-<section class="light">
-  <div class="wrap">
-    <div class="center">
-      <div class="eyebrow">جوه الكتاب</div>
-      <h2>9 فصول بالعامية… زي ما بنتكلم بالظبط</h2>
-      <p class="muted">كل فصل بيبدأ بـ«ليه بقرا ده؟» و«إيه اللي هيتغيّر فيا بعده؟»، وبيخلص بخلاصة وتمارين «جرّب دلوقتي».</p>
-    </div>
-    <div class="chapters">
-      <div class="ch rv"><div class="num">الفصل ١</div><h3>الخاطرة اللي عدّت من غير ما تحس</h3><p>هتبطّل تتعامل مع أفكارك كأنها حقايق، وتفكّك الخاطرة قبل ما تبقى سلوك.</p></div>
-      <div class="ch rv"><div class="num">الفصل ٢</div><h3>إنت بتتغيّر</h3><p>ليه التغيير مش خطر… التوقف هو الخطر. وإزاي تتغيّر من غير جلد ذات.</p></div>
-      <div class="ch rv"><div class="num">الفصل ٣</div><h3>التلات أدوات اللي جواك</h3><p>الفطرة ← المعرفة ← العلم. أدوات حقيقية، مش كلمات حلوة.</p></div>
-      <div class="ch rv"><div class="num">الفصل ٤</div><h3>مين اللي ماسك مفاتيحك؟</h3><p>خط الحياة، وجرد المفاتيح، وتعريف واضح لنفسك. أقوى فصل في الكتاب.</p></div>
-      <div class="ch rv"><div class="num">الفصل ٥</div><h3>محطات التزكية</h3><p>الوضوء والصلاة والأذكار كمحطات بتشحنك وسط يومك، من غير ما تلغي حياتك.</p></div>
-      <div class="ch rv"><div class="num">الفصل ٦</div><h3>سبع حجج بتوقّف الناس</h3><p>كل حجة بتقولك إيه بالظبط… وإزاي ترد عليها.</p></div>
-      <div class="ch rv"><div class="num">الفصل ٧</div><h3>الناس</h3><p>ليه بنحس بالوحدة والغربة، وإزاي تقرا اللي قدامك بقرائن مش أحكام.</p></div>
-      <div class="ch rv"><div class="num">الفصل ٨</div><h3>إزاي تكسب القلوب</h3><p>تقبّل، إنصات، احتواء، حوار… من غير تكبّر ولا تذلل.</p></div>
-      <div class="ch rv"><div class="num">الفصل ٩</div><h3>من الفكرة للحياة</h3><p>همّة ← تخطيط ← تنفيذ ← قياس. وتوصل لحالة اسمها الرضا.</p></div>
-    </div>
+<!-- ================= CTA 3 ================= -->
+<div class="cta-strip">
+  <div class="narrow">
+    <h2>الكتاب + 7 هدايا <em>بـ 299ج بس.</em></h2>
+    <p class="cs-sub">قيمتهم في العرض 1,542ج. يعني أقل من 10 جنيه في اليوم على 30 يوم، والسعر بيرجع 499ج بعد الافتتاح.</p>
+    <div class="hero-price"><b>299ج</b><s>499ج</s><span>سعر الافتتاح</span><span class="deadline" data-deadline hidden></span></div>
+    <a class="btn btn-primary" href="#offer" data-cta="3">اطلب نسختك دلوقتي</a>
+    <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>إنستاباي أو أي محفظة</span><span>بيوصلك على واتساب</span></div>
   </div>
-</section>
+</div>
 
-<!-- ================= PLAYBOOK ================= -->
-<section class="paper" id="playbook">
+<!-- ================= 8 · PLAYBOOK ================= -->
+<section class="light" id="playbook" data-page="playbook">
   <div class="wrap">
     <div class="center">
-      <div class="eyebrow">المرة دي مش هتقرا وتقفل</div>
-      <h2>30 يوم. كل يوم حاجة واحدة صغيرة.</h2>
-      <p class="muted lead">القراية ما بتغيّرش حد… التكرار هو اللي بيغيّر. <b>دوس على أي يوم</b> وشوف هتعمل فيه إيه.</p>
+      <div class="eyebrow">خطة الـ30 يوم</div>
+      <h2 class="display s">30 يوم. <em>كل يوم حاجة واحدة صغيرة.</em></h2>
+      <p class="sub">القراية ما بتغيّرش حد… التكرار هو اللي بيغيّر. <u class="k">دوس على أي يوم</u> وشوف هتعمل فيه إيه.</p>
     </div>
     <div class="pb">
       <div class="weeks" id="weeks"></div>
       <div class="day-panel" id="dayPanel" aria-live="polite"></div>
     </div>
-    <p class="rule rv">القاعدة الذهبية: «خذوا من الأعمال ما تطيقون». <span class="muted" style="color:var(--muted)">لو فاتك يوم، كمّل من اللي بعده. ماتبدأش من الأول.</span></p>
+    <p class="rule rv">القاعدة الذهبية: «خذوا من الأعمال ما تطيقون». <span class="muted" style="color:var(--muted)">لو فاتك يوم، كمّل من اللي بعده.</span></p>
+    <a class="bridge" href="#yt">«بس الدورة مجانية على يوتيوب…»<br>صح. وده بالظبط السبب.</a>
   </div>
 </section>
 
-<!-- ================= YOUTUBE OBJECTION ================= -->
-<section>
+<!-- ================= 9 · YOUTUBE + FIT ================= -->
+<section class="alt" id="yt" data-page="youtube">
   <div class="narrow">
-    <div class="eyebrow">السؤال اللي أكيد في دماغك</div>
-    <h2>«بس الدورة مجانية على يوتيوب…»</h2>
-    <p class="lead">صح. <b>وإحنا بننصحك تسمعها.</b> الفرق مش في المعلومة… الفرق في إنك تعملها. اللي سمع الدورة مرتين وماتغيّرش، مش ناقصه معلومة. ناقصه نظام.</p>
+    <div class="eyebrow">السؤال اللي في دماغك</div>
+    <h2 class="display s">الفرق مش في المعلومة…<br><em>الفرق في إنك تعملها.</em></h2>
+    <p class="sub">الدورة مجانية، <b>وإحنا بننصحك تسمعها.</b> بس اللي سمعها مرتين وماتغيّرش، <u class="k">مش ناقصه معلومة. ناقصه نظام.</u></p>
     <div style="overflow-x:auto">
     <table class="cmp rv">
       <thead><tr><th></th><th>الدورة على يوتيوب</th><th class="us">الكتاب + التحدي</th></tr></thead>
       <tbody>
         <tr><td>الأفكار الأساسية</td><td class="yes">✓</td><td class="us yes">✓</td></tr>
-        <tr><td>مرتّبة في 9 فصول بالعامية تقراها في أي وقت</td><td class="no">—</td><td class="us yes">✓</td></tr>
+        <tr><td>مرتّبة في 9 فصول بالعامية</td><td class="no">—</td><td class="us yes">✓</td></tr>
         <tr><td>تمارين «جرّب دلوقتي» في كل فصل</td><td class="no">—</td><td class="us yes">✓</td></tr>
         <tr><td>خطة 30 يوم، كل يوم مهمة 10–30 دقيقة</td><td class="no">—</td><td class="us yes">✓</td></tr>
-        <tr><td>قوالب جاهزة (اصطياد الخاطرة، الجرد، دورة الهمة…)</td><td class="no">—</td><td class="us yes">✓</td></tr>
+        <tr><td>قوالب جاهزة (اصطياد الخاطرة، الجرد…)</td><td class="no">—</td><td class="us yes">✓</td></tr>
         <tr><td>مراجعة للأحاديث بدرجتها ومصدرها</td><td class="no">—</td><td class="us yes">✓</td></tr>
-        <tr><td>ورقة التحدي للتلاجة + خريطة الأمان</td><td class="no">—</td><td class="us yes">✓</td></tr>
         <tr><td>التكلفة</td><td>مجانًا</td><td class="us">299ج مرة واحدة</td></tr>
       </tbody>
     </table>
     </div>
-    <p class="honest muted">وبأمانة: كل حاجة مضافة من عندنا جوه الكتاب مكتوب جنبها «[إضافة منا]»، علشان تعرف إيه من الدورة وإيه من الشرح.</p>
+    <p class="honest muted">وبأمانة: كل حاجة مضافة من عندنا جوه الكتاب مكتوب جنبها «[إضافة منا]».</p>
+    <div class="fit">
+      <div>
+        <h3>الكتاب ده ليك لو قلت جملة من دول:</h3>
+        <ul class="quotes">
+          <li>«بصلي بس مش حاسس بحاجة»</li>
+          <li>«أي كلمة بتتقالي بتقعد في دماغي أيام»</li>
+          <li>«بقالي سنين بقول هبدأ من أول الشهر»</li>
+        </ul>
+      </div>
+      <div>
+        <h3>ومش ليك لو:</h3>
+        <ul class="no-list">
+          <li>بتدوّر على تحفيز سريع يخليك متحمس يومين.</li>
+          <li>مستني الناس اللي حواليك يتغيّروا علشان ترتاح.</li>
+          <li>بتمر بأزمة نفسية حادة أو أفكار إيذاء. ساعتها المختص الأول.</li>
+        </ul>
+      </div>
+    </div>
+    <a class="bridge" href="#offerTop">طب هتاخد إيه بالظبط؟</a>
   </div>
 </section>
 
-<!-- ================= WHO ================= -->
-<section class="light">
-  <div class="wrap">
+<!-- ================= 10 · OFFER ================= -->
+<section class="offer" id="offer" data-page="offer">
+  <div class="wrap" id="offerTop">
     <div class="center">
-      <div class="eyebrow">الكتاب ده ليك لو…</div>
-      <h2>واحدة من الجمل دي طلعت منك قبل كده</h2>
-    </div>
-    <div class="personas">
-      <div class="persona rv">
-        <div class="say">بصلي بس مش حاسس بحاجة</div>
-        <p>ملتزم من برّه، وجواك فاضي. بتخلّص الصلاة في 4 دقايق ودماغك في الشغل، وحاسس إن شكلك مختلف عن جواك.</p>
-        <div class="gets">هتاخد: الصلاة كحوار + محطات التزكية</div>
-      </div>
-      <div class="persona rv">
-        <div class="say">أي كلمة بتتقالي بتقعد في دماغي أيام</div>
-        <p>مزاجك بيتحدد بكلمة من شريكك أو أهله أو مديرك. بتعمل كل حاجة عشان الكل يرضى، ومحدش راضي.</p>
-        <div class="gets">هتاخد: جرد المفاتيح + سكريبتات المواقف</div>
-      </div>
-      <div class="persona rv">
-        <div class="say">بقالي سنين بقول هبدأ من أول الشهر</div>
-        <p>شغل، بيت، نوم. اليوم بيخلص وإنت مش عامل حاجة لنفسك، ونفسك تبقى قدوة لولادك.</p>
-        <div class="gets">هتاخد: روتين صغير + خطة 30 يوم</div>
-      </div>
-    </div>
-    <div class="notfor rv">
-      <h3>وبصراحة… الكتاب ده مش ليك لو:</h3>
-      <ul>
-        <li>بتدوّر على تحفيز سريع يخليك متحمس يومين. ده نظام بيتعمل، مش كلام بيتقري.</li>
-        <li>مستني الناس اللي حواليك يتغيّروا علشان ترتاح. الكتاب عن مفتاحك إنت، مش عن تغيير حد.</li>
-        <li>بتمر بأزمة نفسية حادة أو أفكار إيذاء. ساعتها الطريق هو مختص الأول، والكتاب ممكن يكون مكمّل بعدين مش بديل.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<!-- ================= OFFER ================= -->
-<section class="offer" id="offer">
-  <div class="wrap">
-    <div class="center">
-      <div class="eyebrow">مش بتشتري كتاب وبس</div>
-      <h2>بتاخد كل اللي محتاجه علشان تبدأ صفحة جديدة</h2>
-      <p class="muted">كل اللي هتاخده النهارده:</p>
+      <p class="pz" id="pzOffer" hidden></p>
+      <div class="eyebrow">العرض</div>
+      <h2 class="display s">كل اللي محتاجه <em>علشان تبدأ صفحة جديدة.</em></h2>
     </div>
     <div class="offer-grid">
       <ul class="stack">
-        <li class="item core rv"><div class="ic">١</div><div><h3>كتاب «من أنا… وِلَم أنا؟»</h3><p>9 فصول بالعامية + Playbook 30 يوم + قوالب جاهزة</p></div><div class="val">499ج</div></li>
-        <li class="item fast rv"><div class="ic">٢</div><div><h3>نسخة شريك المسؤولية <span class="tag">مع سعر الافتتاح بس</span></h3><p>نسخة كاملة تانية تبعتها لشريك حياتك أو صاحبك. اتنين بيبدأوا بتمن واحد.</p></div><div class="val">299ج</div></li>
-        <li class="item rv"><div class="ic">٣</div><div><h3>سكريبتات المفاتيح</h3><p>20 موقف حقيقي (حماة، شريك، مدير، صاحب)، ولكل موقف تقول إيه وتسأل نفسك إيه قبل ما ترد.</p></div><div class="val">199ج</div></li>
-        <li class="item rv"><div class="ic">٤</div><div><h3>من السماع للتطبيق</h3><p>خريطة لحلقات الدورة الـ8: الفكرة في 3 سطور، والتمرين اللي يطبّقها في 24 ساعة.</p></div><div class="val">149ج</div></li>
-        <li class="item rv"><div class="ic">٥</div><div><h3>تحدي الـ30 يوم: نسخة التلاجة</h3><p>4 ورقات طباعة، أسبوع في كل ورقة، بخانات علامة وعدّاد Streak. أصعب تتنسي من PDF في الموبايل.</p></div><div class="val">149ج</div></li>
-        <li class="item rv"><div class="ic">٦</div><div><h3>ملحق المراجعة</h3><p>كل حديث في الكتاب بدرجته ومصدره، واللي ضعيف مكتوب إنه ضعيف.</p></div><div class="val">99ج</div></li>
-        <li class="item rv"><div class="ic">٧</div><div><h3>خريطة الأمان</h3><p>علامات واضحة: إمتى الكتاب يكفيك، وإمتى محتاج مختص.</p></div><div class="val">99ج</div></li>
-        <li class="item rv"><div class="ic">٨</div><div><h3>مقياس العدّاد</h3><p>ورقة 12 سؤال تجاوبها وتحسب نتيجتك بنفسك: إنت فين النهارده، وتبدأ من أنهي فصل.</p></div><div class="val">49ج</div></li>
+        <li class="item core rv"><div class="thumb t-book"><span>من أنا<br>ولم أنا</span></div><div><h3>كتاب «من أنا… وِلَم أنا؟»</h3><p>9 فصول بالعامية + Playbook 30 يوم + قوالب جاهزة</p></div><div class="val">499ج</div></li>
+        <li class="item fast rv"><div class="thumb t-book t-two"><span>من أنا<br>ولم أنا</span></div><div><h3>نسخة شريك المسؤولية <span class="tag">مع سعر الافتتاح بس</span></h3><p>نسخة تانية تبعتها لشريك حياتك أو صاحبك. اتنين بيبدأوا بتمن واحد.</p></div><div class="val">299ج</div></li>
+        <li class="item rv"><div class="thumb t-chat"></div><div><h3>سكريبتات المفاتيح</h3><p>20 موقف حقيقي (حماة، شريك، مدير، صاحب): تقول إيه وتسأل نفسك إيه قبل ما ترد.</p></div><div class="val">199ج</div></li>
+        <li class="item rv"><div class="thumb t-play"></div><div><h3>من السماع للتطبيق</h3><p>حلقات الدورة الـ8: الفكرة في 3 سطور، وتمرين يطبّقها في 24 ساعة.</p></div><div class="val">149ج</div></li>
+        <li class="item rv"><div class="thumb t-grid"></div><div><h3>تحدي الـ30 يوم: نسخة التلاجة</h3><p>4 ورقات طباعة بخانات علامة وعدّاد Streak. أصعب تتنسي من PDF في الموبايل.</p></div><div class="val">149ج</div></li>
+        <li class="item rv"><div class="thumb t-lines"></div><div><h3>ملحق المراجعة</h3><p>كل حديث في الكتاب بدرجته ومصدره، واللي ضعيف مكتوب إنه ضعيف.</p></div><div class="val">99ج</div></li>
+        <li class="item rv"><div class="thumb t-map"></div><div><h3>خريطة الأمان</h3><p>إمتى الكتاب يكفيك، وإمتى محتاج مختص.</p></div><div class="val">99ج</div></li>
+        <li class="item rv"><div class="thumb t-gauge"></div><div><h3>مقياس العدّاد</h3><p>12 سؤال تعرف منهم إنت فين النهارده، وتبدأ من أنهي فصل.</p></div><div class="val">49ج</div></li>
       </ul>
       <aside class="price-card rv">
         <div class="pc-top">عرض الافتتاح</div>
         <div class="total"><span>القيمة الإجمالية</span><s>1,542ج</s></div>
         <div class="total"><span>السعر بعد الافتتاح</span><s>499ج</s></div>
         <div class="now">299<small> جنيه</small></div>
-        <div class="per">يعني أقل من 10 جنيه في اليوم على 30 يوم.<br>أقل من تمن خروجة واحدة… قصاد شهر تبدأ فيه صفحة جديدة.</div>
+        <div class="deadline" data-deadline hidden></div>
+        <div class="per">أقل من 10 جنيه في اليوم على 30 يوم.</div>
         <div class="co" id="buy-section">
           <!-- Success Message (hidden by default) -->
           <div id="success-message" class="success hidden">
@@ -936,36 +1049,44 @@ footer p+p{margin-top:.6em}
       <div class="seal"><div><b>7</b>أيام<br>ضمان</div></div>
       <div>
         <h3>ضمان «7 أيام تطبيق»: الخطر علينا إحنا، مش عليك.</h3>
-        <p>ابدأ التحدي. اعمل أول 7 أيام من الـ Playbook (كل يوم من 10 لـ 30 دقيقة). لو في اليوم السابع ماحسّيتش إن فيه حاجة اتحركت جواك، ابعتلنا رسالة على نفس الواتساب، <b style="color:var(--ink)">وفلوسك هترجعلك كاملة على الرقم اللي حوّلت منه. مش هنسألك ليه.</b></p>
+        <p>اعمل أول 7 أيام من الـ Playbook. لو في اليوم السابع ماحسّيتش إن فيه حاجة اتحركت جواك، ابعتلنا رسالة على نفس الواتساب، <b style="color:var(--ink)">وفلوسك هترجعلك كاملة على الرقم اللي حوّلت منه. مش هنسألك ليه.</b></p>
       </div>
+    </div>
+
+    <div id="proof" class="center" hidden style="margin-top:4.5rem">
+      <div class="eyebrow">من أول المشترين</div>
+      <h2 class="display s">رسايل وصلتنا <em>على الواتساب.</em></h2>
+      <div class="proofs" id="proofs"></div>
     </div>
   </div>
 </section>
 
-<!-- ================= FAQ ================= -->
-<section>
+<!-- ================= 11 · FAQ ================= -->
+<section id="faq" data-page="faq">
   <div class="narrow">
     <div class="eyebrow">أسئلة بتتسأل كتير</div>
-    <h2>قبل ما تقرر</h2>
+    <h2 class="display s">قبل ما <em>تقرر.</em></h2>
     <div class="faq">
-      <details><summary>معنديش وقت أقرا كتاب كامل.</summary><div class="ans">مش محتاج وقت زيادة، محتاج وقت كنت بتضيّعه. الروتين الأساسي دقيقتين الصبح ودقيقتين قبل النوم، ولو ده كتير ابدأ بالجرد ودعاء الاستيقاظ بس أول أسبوع. وكل يوم في التحدي مهمة واحدة من 10 لـ 30 دقيقة، مش فصل كامل.</div></details>
-      <details><summary>جربت كتب تطوير ذات قبل كده وماحصلش حاجة.</summary><div class="ans">وده طبيعي، لأن أغلبها بيتقري ويتقفل. هنا كل فصل بيخلص بتمارين، وفي الآخر خطة 30 يوم كل يوم فيها مهمة واحدة، وورقة على التلاجة تفكّرك كل يوم. وعلشان كده الضمان مربوط بإنك تطبّق أول 7 أيام: لو طبّقت وماحسّيتش بفرق، فلوسك ترجعلك.</div></details>
+      <details><summary>معنديش وقت أقرا كتاب كامل.</summary><div class="ans">مش محتاج وقت زيادة، محتاج وقت كنت بتضيّعه. الروتين الأساسي دقيقتين الصبح ودقيقتين قبل النوم. وكل يوم في التحدي مهمة واحدة من 10 لـ 30 دقيقة، مش فصل كامل.</div></details>
+      <details><summary>جربت كتب تطوير ذات قبل كده وماحصلش حاجة.</summary><div class="ans">وده طبيعي، لأن أغلبها بيتقري ويتقفل. هنا كل فصل بيخلص بتمارين، وفي الآخر خطة 30 يوم كل يوم فيها مهمة واحدة، وورقة على التلاجة تفكّرك. وعلشان كده الضمان مربوط بإنك تطبّق أول 7 أيام: لو طبّقت وماحسّيتش بفرق، فلوسك ترجعلك.</div></details>
+      <details id="faq-pay"><summary>مش معايا فودافون كاش ولا إنستاباي.</summary><div class="ans">تقدر تحوّل على نفس الرقم من أي محفظة موبايل (فودافون كاش، أورنج كاش، اتصالات كاش، وي باي)، أو من أي تطبيق بنك فيه إنستاباي. ولو مفيش خالص، أي حد قريب منك يقدر يحوّل بدالك.</div></details>
+      <details><summary>الكتاب بيوصلني إزاي؟ وبادفع إزاي؟</summary><div class="ans">بتكتب اسمك ورقم الواتساب، وتحوّل 299 جنيه إنستاباي أو أي محفظة، وترفع صورة التحويل في نفس الصفحة أو تبعتها على واتساب. أول ما نشوف التحويل، بيوصلك الكتاب والهدايا على نفس الواتساب كـ PDF تقدر تقراه على الموبايل أو تطبعه. ولو عايز تستلم أسرع، ابعت صورة التحويل على الواتساب مباشرة.</div></details>
       <details><summary>أخاف يكون كلام ديني مش موثّق.</summary><div class="ans">ملحق المراجعة فيه كل حديث وأثر في الكتاب بدرجته ومصدره، واللي ضعيف مكتوب إنه ضعيف صراحةً. والمسائل الخلافية بتتحال لأهل العلم، مش بنفتي فيها.</div></details>
-      <details><summary>هل الكتاب بديل عن العلاج النفسي؟</summary><div class="ans">لأ، والكتاب بيقول كده بوضوح. هو مكمّل مش بديل. ومعاك «خريطة الأمان» اللي بتوضح إمتى الضيق «نداء» وإمتى محتاج مختص، وإزاي تختار أخصائي. ولو عندك أفكار إيذاء، كلّم مختص أو حد قريب بتثق فيه فورًا.</div></details>
+      <details><summary>هل الكتاب بديل عن العلاج النفسي؟</summary><div class="ans">لأ، والكتاب بيقول كده بوضوح. هو مكمّل مش بديل. ومعاك «خريطة الأمان» اللي بتوضح إمتى الضيق «نداء» وإمتى محتاج مختص. ولو عندك أفكار إيذاء، كلّم مختص أو حد قريب بتثق فيه فورًا.</div></details>
       <details><summary>ده هيغيّر اللي حواليا؟</summary><div class="ans">الكتاب مش عن تغيير الناس. هو عن إنك تسحب مفتاح راحتك من إيدهم. اللي بيحصل غالبًا إن طريقة ردك بتتغيّر… وده لوحده بيغيّر حاجات كتير حواليك.</div></details>
-      <details><summary>الكتاب بيوصلني إزاي؟ وبادفع إزاي؟</summary><div class="ans">بتكتب اسمك ورقم الواتساب، وتحوّل 299 جنيه إنستاباي أو أي محفظة (فودافون كاش وغيرها)، وترفع صورة التحويل في نفس الصفحة أو تبعتها على واتساب. أول ما نشوف التحويل، بيوصلك الكتاب والهدايا على نفس الواتساب كـ PDF تقدر تقراه على الموبايل أو تطبعه.</div></details>
       <details><summary>ليه السعر هيبقى 499 بعدين؟</summary><div class="ans">299 سعر الافتتاح بس. بعد الافتتاح السعر بيرجع 499، وهدية «نسخة شريك المسؤولية» بتتقفل معاه. مفيش عدّادات وهمية هنا، ده ميعاد حقيقي.</div></details>
     </div>
   </div>
 </section>
 
-<!-- ================= FINAL ================= -->
-<section class="final grain">
+<!-- ================= 12 · FINAL ================= -->
+<section class="final grain" id="final" data-page="final">
   <div class="narrow">
-    <p class="bigquote rv">«أنا بخاف من التوقف<br><span>أكتر من خوفي من التغيير.</span>»</p>
-    <p class="lead rv">لو قريت لحد هنا وحسيت إن الكلام ده عنك… فهو عنك.<br>مش محتاج تبقى جاهز. <b class="hl">محتاج تبدأ، حتى لو بدأت غلط.</b></p>
-    <a class="btn btn-primary rv" href="#offer">ابدأ التحدي النهارده بـ 299ج</a>
-    <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>تحويل فودافون كاش</span><span>بيوصلك على واتساب</span></div>
+    <p class="pz" id="pzFinal" hidden></p>
+    <p class="display s rv">«أنا بخاف من التوقف<br><em>أكتر من خوفي من التغيير.</em>»</p>
+    <p class="sub rv" style="margin-inline:auto">لو قريت لحد هنا وحسيت إن الكلام ده عنك… فهو عنك. مش محتاج تبقى جاهز. <u class="k">محتاج تبدأ، حتى لو بدأت غلط.</u></p>
+    <a class="btn btn-primary rv" href="#offer">احصل على الكتاب وابدأ النهارده بـ 299ج</a>
+    <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>إنستاباي أو أي محفظة</span><span>بيوصلك على واتساب</span></div>
   </div>
 </section>
 
@@ -981,13 +1102,12 @@ footer p+p{margin-top:.6em}
 
 <!-- sticky CTA -->
 <div class="sticky" id="sticky">
-  <div class="sp"><b>299ج</b><s>499ج</s><small>سعر الافتتاح · ضمان 7 أيام</small></div>
+  <div class="sp"><b>299ج</b><s>499ج</s><small id="stickyMsg">سعر الافتتاح · ضمان 7 أيام</small></div>
   <a class="btn btn-primary" href="#offer">ابدأ التحدي</a>
 </div>
 
 <!-- Toast -->
 <div id="toast">تم نسخ الرقم بنجاح!</div>
-
 
 <script>
 /* ================= CHECKOUT / PIXEL / GOOGLE SHEET ================= */
@@ -1318,31 +1438,73 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 });
 
-(function(){
-  const track = (ev, data) => { try{ if(window.fbq) fbq('trackCustom', ev, data); }catch(e){} };
+/* ================= PAGE SETTINGS ================= */
+const PAGE = {
+  // تاريخ نهاية سعر الافتتاح (اختياري). مثال: '2026-12-03T23:59:00+02:00'
+  // لو فاضي مفيش تاريخ بيظهر. ولما التاريخ يعدّي السطر بيختفي لوحده (غيّر السعر بنفسك ساعتها).
+  launchEnd: '',
+  // صور حقيقية من رسايل المشترين (اختياري). مثال: ['images/proof1.jpg','images/proof2.jpg']
+  // القسم مخفي لحد ما تحط صور.
+  proofs: []
+};
 
-  // reveal on scroll
+(function(){
+  const track = (ev, data) => { try{ if(window.fbq) fbq('trackCustom', ev, data||{}); }catch(e){} };
+  const $ = id => document.getElementById(id);
+  const ar = n => Number(n).toLocaleString('ar-EG');
+  const fmt = n => Number(n).toLocaleString('en-US');
+  const state = { signs:0, rec:null, days:null, years:null };
+
+  /* ---------- reveal on scroll ---------- */
   const io=new IntersectionObserver(es=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} }),{threshold:.12});
   document.querySelectorAll('.rv').forEach(el=>io.observe(el));
 
-  // quiz
-  const signs=[...document.querySelectorAll('#signs .sign')], res=document.getElementById('result');
-  const render=()=>{
-    const n=signs.filter(s=>s.querySelector('input').checked).length;
-    signs.forEach(s=>s.classList.toggle('on',s.querySelector('input').checked));
-    if(!n){res.className='result';res.innerHTML='<p class="muted">علّم على اللي يشبهك وهتظهرلك النتيجة هنا.</p>';return;}
-    let h,p;
-    if(n===1){h='علامة واحدة… وده مش قليل.';p='أخطر جملة في حياتك مش «مش قادر»، أخطر جملة هي «أنا كويس كده». العدّاد شغال حتى لو إنت واقف.';}
-    else if(n<=3){h='الكتاب ده اتكتب علشانك بالظبط.';p='علّمت على '+n+'. ومفيش حاجة غلط فيك. ده بالظبط الوضع اللي بيبدأ منه أي تحوّل حقيقي.';}
-    else {h='إنت مش وحش… إنت تايه.';p='علّمت على '+n+' من 6. ده مش عيب فيك، ده نداء. والطريق بيبدأ بخطوة صغيرة النهارده، مش بقرار كبير.';}
-    res.className='result ready';
-    res.innerHTML='<h3>'+h+'</h3><p>'+p+'</p><a class="btn btn-primary" href="#offer">ابدأ تحدي الـ30 يوم ←</a>';
-    track('QuizAnswer',{count:n});
-  };
-  signs.forEach(s=>s.querySelector('input').addEventListener('change',render));
+  /* ---------- reading progress + "page x of n" + section tracking ---------- */
+  const pages=[...document.querySelectorAll('[data-page]')], prog=$('prog'), chip=$('pchip');
+  const heroEl=document.querySelector('.hero');
+  let ticking=false;
+  function onScroll(){
+    const h=document.documentElement.scrollHeight-innerHeight;
+    prog.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%';
+    let cur=0; const mark=innerHeight*.4;
+    pages.forEach((p,i)=>{ if(p.getBoundingClientRect().top<mark) cur=i; });
+    chip.textContent='صفحة '+ar(cur+1)+' من '+ar(pages.length);
+    chip.classList.toggle('show', scrollY>heroEl.offsetHeight*.6);
+    ticking=false;
+  }
+  addEventListener('scroll',()=>{ if(!ticking){ ticking=true; requestAnimationFrame(onScroll);} },{passive:true});
+  onScroll();
+  const seen=new Set();
+  const so=new IntersectionObserver(es=>es.forEach(e=>{
+    const n=e.target.dataset.page;
+    if(e.isIntersecting && !seen.has(n)){ seen.add(n); track('SectionView',{section:n, index:pages.indexOf(e.target)+1}); }
+  }),{threshold:.35});
+  pages.forEach(p=>so.observe(p));
 
-  // life meter (real, from birth date)
-  const $=id=>document.getElementById(id);
+  /* ---------- quiz (with chapter recommendation) ---------- */
+  const chapterOf=[1,6,4,4,7,9]; // كل علامة ← أنسب فصل تبدأ منه
+  const toc=[...document.querySelectorAll('#toc li')];
+  const chTitle=n=>toc[n-1]?toc[n-1].querySelector('h3').textContent:'';
+  const signs=[...document.querySelectorAll('#signs .sign')], res=$('result');
+  const renderQuiz=()=>{
+    const checked=signs.map((s,i)=>s.querySelector('input').checked?i:-1).filter(i=>i>=0);
+    const n=checked.length;
+    signs.forEach(s=>s.classList.toggle('on',s.querySelector('input').checked));
+    state.signs=n; state.rec=n?chapterOf[checked[0]]:null;
+    toc.forEach((li,i)=>li.classList.toggle('rec', state.rec===i+1));
+    if(!n){res.className='result';res.innerHTML='<p class="muted">علّم على اللي يشبهك وهتظهرلك النتيجة هنا.</p>';personalize();return;}
+    let h,p;
+    if(n===1){h='علامة واحدة… وده مش قليل.';p='أخطر جملة مش «مش قادر»، أخطر جملة هي «أنا كويس كده». العدّاد شغال حتى لو إنت واقف.';}
+    else if(n<=3){h='الكتاب ده اتكتب علشانك بالظبط.';p='علّمت على '+n+'. ومفيش حاجة غلط فيك. ده بالظبط الوضع اللي بيبدأ منه أي تحوّل حقيقي.';}
+    else {h='إنت مش وحش… إنت تايه.';p='علّمت على '+n+' من 6. ده مش عيب فيك، ده نداء. والطريق بيبدأ بخطوة صغيرة، مش بقرار كبير.';}
+    res.className='result ready';
+    res.innerHTML='<h3>'+h+'</h3><p>'+p+'</p><p style="margin-top:.8em"><b>ابدأ من الفصل '+ar(state.rec)+':</b> «'+chTitle(state.rec)+'».</p><a class="tlink" href="#day" style="display:inline-block;margin-top:1rem">كمّل القراية ↓</a>';
+    track('QuizAnswer',{count:n, chapter:state.rec});
+    personalize();
+  };
+  signs.forEach(s=>s.querySelector('input').addEventListener('change',renderQuiz));
+
+  /* ---------- life meter (real, from birth date) ---------- */
   const bD=$('bD'), bM=$('bM'), bY=$('bY'), mErr=$('mErr');
   const months=['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
   for(let d=1; d<=31; d++) bD.add(new Option(d,d));
@@ -1351,7 +1513,6 @@ document.addEventListener('DOMContentLoaded', function() {
   for(let y=thisYear; y>=thisYear-90; y--) bY.add(new Option(y,y));
   let birth=null, timer=null;
   const pad=x=>String(x).padStart(2,'0');
-  const fmt=n=>n.toLocaleString('en-US');
   function tick(){
     const now=new Date();
     let years=now.getFullYear()-birth.getFullYear();
@@ -1361,8 +1522,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const days=Math.floor(r/86400); r%=86400;
     $('uY').textContent=years; $('uD').textContent=days;
     $('uH').textContent=pad(Math.floor(r/3600)); $('uM').textContent=pad(Math.floor(r/60)%60); $('uS').textContent=pad(r%60);
-    const total=Math.floor((now-birth)/1000);
-    $('uT').textContent=fmt(total); $('uDays').textContent=fmt(Math.floor(total/86400));
+    const total=Math.floor((now-birth)/1000), totalDays=Math.floor(total/86400);
+    $('uT').textContent=fmt(total); $('uDays').textContent=fmt(totalDays);
+    if(state.days!==totalDays || state.years!==years){ state.days=totalDays; state.years=years; personalize(); }
   }
   function start(d,save){
     birth=d; $('mForm').hidden=true; $('mOut').hidden=false; tick();
@@ -1377,10 +1539,26 @@ document.addEventListener('DOMContentLoaded', function() {
     if(dt>new Date()){ mErr.textContent='التاريخ ده لسه ماجاش.'; return; }
     start(dt,true);
   });
-  $('mReset').addEventListener('click',()=>{ clearInterval(timer); $('mOut').hidden=true; $('mForm').hidden=false; try{localStorage.removeItem('mn_birth')}catch(e){} });
+  $('mReset').addEventListener('click',()=>{ clearInterval(timer); $('mOut').hidden=true; $('mForm').hidden=false; state.days=null; state.years=null; personalize(); try{localStorage.removeItem('mn_birth')}catch(e){} });
   try{ const saved=localStorage.getItem('mn_birth'); if(saved){ const d=new Date(saved); if(!isNaN(d)){ bD.value=d.getDate(); bM.value=d.getMonth(); bY.value=d.getFullYear(); start(d,false); } } }catch(e){}
 
-  // playbook
+  /* ---------- personalization (offer, final, sticky) ---------- */
+  function personalize(){
+    const o=$('pzOffer'), f=$('pzFinal'), s=$('stickyMsg');
+    const days=state.days, n=state.signs;
+    let offer='', fin='', st='سعر الافتتاح · ضمان 7 أيام';
+    if(days!=null && n){ offer='عشت '+fmt(days)+' يوم، وعلّمت على '+n+' من 6.<br>الـ30 يوم الجايين ممكن يبقوا مختلفين.'; }
+    else if(days!=null){ offer='عشت '+fmt(days)+' يوم لحد النهارده.<br>الـ30 يوم الجايين ممكن يبقوا مختلفين.'; }
+    else if(n){ offer='علّمت على '+n+' من 6 علامات.<br>والكتاب ده معمول للي علّم على واحدة بس.'; }
+    if(days!=null){ fin=state.years+' سنة عدّوا.<br>واليوم رقم '+fmt(days+1)+' ممكن يبقى أول يوم.'; st='اليوم رقم '+fmt(days+1)+' ممكن يبقى البداية'; }
+    else if(state.rec){ fin='فاكر؟ الفصل '+ar(state.rec)+' مستنيك.'; }
+    if(n && days==null) st='علّمت على '+n+' من 6 · ضمان 7 أيام';
+    o.innerHTML=offer; o.hidden=!offer;
+    f.innerHTML=fin; f.hidden=!fin;
+    s.textContent=st;
+  }
+
+  /* ---------- playbook ---------- */
   const weeks=[
     {t:'الأسبوع 1 · التفكير والتغيير',d:['اكتب: «أنا بقرا الكتاب ده عشان…» (نيتك)، واختار روتينك.','اصطياد خاطرة: اكتب خاطرة واحدة اتحكمت فيك النهارده (غضب، خوف، مقارنة).','فكّكها: جت منين؟ إيه الفكرة؟ إيه الدليل؟','مفتاح التلقي والاستفهام: اسأل 3 أسئلة بدل ما تقبل معلومة على طول.','جديد كل يوم: ادّي نفسك حاجة جديدة، واكتبها.','إغلاق الملفات: اكتب كل الملفات المفتوحة في دماغك. اختار واحد وقرّر فيه.','مراجعة الأسبوع: إيه اللي اتغيّر؟ وإيه اللي كان صعب؟']},
     {t:'الأسبوع 2 · الأدوات والنفس',d:['عرّف 3 كلمات بنفسك: النجاح، السعادة، …','الهوية ← الوظيفة ← الهدف، لدور واحد في حياتك.','أول جرد كامل للميزانين: الروح والجسد (5 دقايق).','خريطة خط الحياة: رتّب أهم 5 حاجات في حياتك بصدق.','جرد المفاتيح: مين ماسك مفتاحك؟ واكتب «جملة السور».','محطة الصباح: دعاء الاستيقاظ + 30 ثانية نيّة.','محطة الصلاة: ركّز على جملة واحدة في الصلاة (الاستفتاح أو الفاتحة).']},
@@ -1388,34 +1566,56 @@ document.addEventListener('DOMContentLoaded', function() {
     {t:'الأسبوع 4 · التعامل والخطة والرضا',d:['تجربة السلام والابتسامة والتقبّل (يوم 1 من 7).','الإنصات: محادثة واحدة من غير ما تقاطع.','مسح الكِبر: 5 أسئلة صريحة مع نفسك.','تمرين «هلّا»: حوّل نقد قديم لنقد + بديل.','المفاجأة الحميدة: موقف واحد، رد غير متوقع بالأرحم.','زعلان منه… ولا عليه؟ موقف ضايقك، اقراه تاني.','ورقة دورة الهمّة: هدف + مراحل + قدرات + جدول.']},
     {t:'الختام',d:['أول خطوة تنفيذ: ابدأ غلط، بس ابدأ.','جرد الشهر: إيه اتغيّر؟ وإيه الحاجة الوحيدة اللي هكمّل عليها؟']}
   ];
-  const wEl=document.getElementById('weeks'), panel=document.getElementById('dayPanel');
-  let day=1, all=[];
+  const wEl=$('weeks'), panel=$('dayPanel');
+  let all=[];
   weeks.forEach((w,wi)=>{
     const row=document.createElement('div'); row.className='week-row';
     row.innerHTML='<div class="wl">'+(wi<4?'الأسبوع '+(wi+1):'الختام')+'</div>';
     const g=document.createElement('div'); g.className='days';
     w.d.forEach((txt)=>{ const n=all.length+1; all.push({n,txt,w:w.t});
       const b=document.createElement('button'); b.className='day'; b.textContent=n; b.type='button';
-      b.setAttribute('aria-label','يوم '+n); b.onclick=()=>show(n); g.appendChild(b); });
+      b.setAttribute('aria-label','يوم '+n); b.onclick=()=>{ show(n); track('PlaybookDay',{day:n}); }; g.appendChild(b); });
     row.appendChild(g); wEl.appendChild(row);
   });
   const btns=[...wEl.querySelectorAll('.day')];
   function show(n){
-    day=n; const d=all[n-1];
+    const d=all[n-1];
     btns.forEach((b,i)=>{b.classList.toggle('sel',i===n-1); b.classList.toggle('done',i<n-1);});
     panel.innerHTML='<div class="dn">يوم '+n+' من 30</div><h3>'+d.txt+'</h3><div class="wk">'+d.w+'</div>'+
       '<div class="routine"><b>والروتين الثابت كل يوم:</b> دعاء الاستيقاظ + «النهارده هعمل حاجة جديدة» (30 ثانية الصبح)، وجرد الميزانين + إغلاق ملف واحد قبل النوم (3 دقايق).</div>';
   }
   show(1);
 
-  // sticky bar
-  const sticky=document.getElementById('sticky'), hero=document.querySelector('.hero'), offer=document.getElementById('offer');
-  let heroOut=false, offerIn=false;
-  const upd=()=>sticky.classList.toggle('show',heroOut&&!offerIn);
-  new IntersectionObserver(([e])=>{heroOut=!e.isIntersecting;upd();}).observe(hero);
-  new IntersectionObserver(([e])=>{offerIn=e.isIntersecting;upd();},{threshold:.15}).observe(document.querySelector('.price-card'));
+  /* ---------- launch deadline (real date only) ---------- */
+  if(PAGE.launchEnd){
+    const end=new Date(PAGE.launchEnd);
+    if(!isNaN(end) && end>new Date()){
+      const label='لحد '+end.toLocaleDateString('ar-EG',{weekday:'long',day:'numeric',month:'long'});
+      document.querySelectorAll('[data-deadline]').forEach(el=>{ el.textContent='سعر الافتتاح '+label; el.hidden=false; });
+    }
+  }
 
+  /* ---------- real proofs ---------- */
+  if(PAGE.proofs && PAGE.proofs.length){
+    const box=$('proofs');
+    PAGE.proofs.forEach(src=>{ const img=new Image(); img.src=src; img.alt='رسالة من مشتري'; img.loading='lazy'; box.appendChild(img); });
+    $('proof').hidden=false;
+  }
+
+  /* ---------- which in-page CTA strip got clicked ---------- */
+  document.addEventListener('click',e=>{ const a=e.target.closest('a[data-cta]'); if(a) track('CTAClick',{cta:a.dataset.cta}); });
+
+  /* ---------- sticky bar: after the quiz, hidden in offer & final ---------- */
+  const sticky=$('sticky');
+  let pastQuiz=false, offerIn=false, finalIn=false;
+  const upd=()=>sticky.classList.toggle('show',pastQuiz&&!offerIn&&!finalIn);
+  new IntersectionObserver(([e])=>{ pastQuiz=e.boundingClientRect.bottom<0 || (!e.isIntersecting && e.boundingClientRect.top<0); upd(); }).observe($('quiz'));
+  new IntersectionObserver(([e])=>{offerIn=e.isIntersecting;upd();},{threshold:.05}).observe($('offer'));
+  new IntersectionObserver(([e])=>{finalIn=e.isIntersecting;upd();},{threshold:.2}).observe($('final'));
+
+  personalize();
 })();
 </script>
 </body>
 </html>
+
