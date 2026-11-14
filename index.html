@@ -619,6 +619,125 @@ u.k{text-decoration:none;background:linear-gradient(transparent 60%,rgba(201,164
 .cta-strip .cs-sub{font-size:1.02rem;line-height:1.9;color:var(--ink-mute);margin:0 auto 1.4rem;max-width:32em}
 .cta-strip .hero-price{justify-content:center;margin-bottom:1.2rem}
 .cta-strip .btn{min-width:min(340px,100%)}
+
+/* ================= v8: standout CTAs + gifts ================= */
+:root{--cta:#1E5A4F;--cta-2:#123C34;--cta-ink:#FFF8E8}
+.btn-primary{position:relative;overflow:hidden;background:linear-gradient(180deg,#2A7062 0%,var(--cta) 55%,var(--cta-2) 100%);color:var(--cta-ink);font-weight:700;letter-spacing:0;box-shadow:inset 0 0 0 1px rgba(230,207,151,.55),inset 0 1px 0 rgba(255,255,255,.18),0 20px 40px -18px rgba(18,60,52,.75);transition:transform .2s,box-shadow .2s,filter .2s}
+.btn-primary::after{content:"";position:absolute;top:0;bottom:0;width:40%;left:-60%;background:linear-gradient(100deg,transparent,rgba(255,240,200,.35),transparent);transform:skewX(-20deg);animation:shine 4.5s ease-in-out infinite}
+@keyframes shine{0%,70%{left:-60%}100%{left:130%}}
+.btn-primary:hover{filter:none;transform:translateY(-2px);box-shadow:inset 0 0 0 1px rgba(230,207,151,.8),0 26px 46px -18px rgba(18,60,52,.85)}
+.btn-primary small{color:#E6CF97;opacity:.9}
+.btn-sm.btn-primary::after{display:none}
+/* value badge */
+.gift-badge{display:inline-flex;align-items:center;gap:.6em;flex-wrap:wrap;justify-content:center;margin:0 0 1.3rem;padding:.55em 1.1em;font-family:var(--ui);font-size:.9rem;font-weight:500;color:#7A2E3E;background:linear-gradient(90deg,#FCEDEF,#FFF6E6);border:1px dashed #C4677A;text-decoration:none;border-radius:999px}
+.gift-badge b{color:#A23B52}
+.gift-badge .gb-ic{width:20px;height:20px;color:#A23B52;display:inline-grid}
+.gift-badge .dots{display:inline-flex;gap:3px}
+.gift-badge .dots i{width:7px;height:7px;border-radius:50%}
+.gift-badge:hover{border-style:solid}
+/* main product */
+.stack-wrap{display:grid;gap:22px}
+.main-item{position:relative;background:var(--paper);border:1px solid var(--hair);border-top:4px solid var(--gold);padding:26px 24px 24px;box-shadow:0 30px 60px -45px rgba(90,60,20,.45)}
+.mi-lbl{position:absolute;top:-14px;right:20px;font-family:var(--ui);font-size:.75rem;font-weight:600;background:var(--ink);color:#F3E3B8;padding:.3em .9em}
+.mi-row{display:grid;grid-template-columns:auto 1fr;gap:20px;align-items:center}
+.main-item h3{font-family:var(--display);font-size:1.55rem;font-weight:700;color:var(--ink)}
+.main-item p{font-size:1rem;color:var(--ink-mute)}
+.mi-val{font-family:var(--ui);font-size:.85rem;color:var(--gold-lo);margin-top:.3rem}
+.thumb.big{width:70px;height:92px}
+.thumb.big span{font-size:.9rem}
+/* gifts header */
+.gifts-head{display:flex;align-items:center;gap:14px;padding:16px 20px;background:linear-gradient(90deg,#A23B52,#C2573A 55%,#B07A12);color:#fff;box-shadow:0 20px 40px -26px rgba(162,59,82,.8)}
+.gifts-head .gh-ic{width:42px;height:42px;flex:none;display:grid;place-items:center;border-radius:50%;background:rgba(255,255,255,.18)}
+.gifts-head .gh-ic svg{width:24px;height:24px}
+.gifts-head b{display:block;font-family:var(--display);font-size:1.45rem;line-height:1.3}
+.gifts-head small{font-family:var(--ui);font-size:.85rem;opacity:.92}
+/* gift cards */
+.gifts{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.gift{--t:color-mix(in srgb,var(--c) 8%,#fff);--b:color-mix(in srgb,var(--c) 30%,transparent);--gold:var(--c);position:relative;background:linear-gradient(180deg,var(--t),#FFFEFB 75%);border:1px solid var(--b);border-top:4px solid var(--c);padding:52px 18px 18px;transition:transform .25s,box-shadow .25s}
+.gift:hover{transform:translateY(-4px);box-shadow:0 24px 40px -26px var(--c)}
+.gifts .gift:last-child:nth-child(odd){grid-column:1/-1}
+.g-rib{position:absolute;top:12px;right:-7px;display:inline-flex;align-items:center;gap:.35em;background:var(--c);color:#fff;font-family:var(--ui);font-size:.76rem;font-weight:600;padding:.28em .8em .28em .9em}
+.g-rib svg{width:14px;height:14px}
+.g-rib::after{content:"";position:absolute;right:0;bottom:-7px;border-style:solid;border-width:7px 7px 0 0;border-color:color-mix(in srgb,var(--c) 60%,#000) transparent transparent transparent}
+.g-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:.8rem}
+.gift .thumb{border-color:var(--b);background-color:#fff}
+.gift .t-book span{color:var(--c)}
+.g-val{text-align:left;font-family:var(--ui);line-height:1.3}
+.g-val s{display:block;font-size:.78rem;color:#8F8577}
+.g-val b{display:inline-block;margin-top:4px;font-size:.82rem;color:#fff;background:var(--c);padding:.15em .7em;border-radius:999px}
+.gift h3{font-size:1.06rem;color:var(--c);filter:brightness(.8);margin-bottom:.25em}
+.gift p{font-size:.94rem;line-height:1.8;color:var(--ink-mute)}
+.g-only{display:inline-block;margin-top:.6rem;font-family:var(--ui);font-size:.72rem;font-weight:600;color:var(--c);border:1px dashed var(--c);padding:.15em .7em}
+/* receipt in price card */
+.receipt{list-style:none;margin:1rem 0 .4rem;font-family:var(--ui);font-size:.85rem;color:var(--fg-soft)}
+.receipt li{display:flex;justify-content:space-between;gap:10px;padding:.42rem 0;border-bottom:1px dotted var(--hair-light)}
+.receipt li i{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--c,var(--gold));margin-inline-end:.5em;vertical-align:middle}
+.receipt li span:last-child{white-space:nowrap;color:var(--fg-mute)}
+.receipt .r-total{border-bottom:0;padding-top:.6rem;font-weight:600;color:var(--ink)}
+.receipt .r-total s{color:#A8402F}
+.save{display:inline-block;margin:.2rem 0 1rem;font-family:var(--ui);font-size:.9rem;font-weight:600;color:#fff;background:#2E7D4F;padding:.3em .9em}
+.save b{font-size:1.05rem}
+/* sticky gift chip */
+.sticky .sp .sg{display:inline-block;margin-inline-start:.5em;font-size:.7rem;font-weight:600;color:#fff;background:#A23B52;padding:.15em .55em;vertical-align:middle}
+/* guarantee in trust green */
+.guarantee{border:1px solid rgba(46,125,79,.35);border-top:4px solid #2E7D4F;background:linear-gradient(180deg,#F1F8F3,var(--paper) 70%)}
+.seal{border-color:#2E7D4F;color:#2E7D4F;box-shadow:inset 0 0 0 6px var(--ivory),inset 0 0 0 7px rgba(46,125,79,.5)}
+.seal b{background:linear-gradient(180deg,#3E9A64,#1F6440);-webkit-background-clip:text;background-clip:text}
+.guarantee h3{color:#1F5A3A}
+@media (max-width:640px){
+  .gifts{grid-template-columns:1fr}
+  .gifts-head b{font-size:1.25rem}
+  .main-item h3{font-size:1.3rem}
+  .gift-badge{font-size:.84rem}
+}
+
+/* ================= v9: bundle hero + real covers ================= */
+.bundle{display:grid;justify-items:center;gap:18px;padding:10px 0}
+.bd-stage{position:relative;width:min(540px,100%);aspect-ratio:1/1.02}
+.bd-stage img{position:absolute;display:block;height:auto;border-radius:2px 5px 5px 2px;box-shadow:0 22px 40px -22px rgba(30,20,5,.55),0 2px 6px rgba(30,20,5,.15);transition:transform .6s cubic-bezier(.2,.7,.2,1)}
+.bd-stage .bk{width:46%;left:27%;top:15%;z-index:10;box-shadow:0 50px 80px -35px rgba(10,40,35,.75),0 4px 10px rgba(10,40,35,.25);animation:float 7s ease-in-out infinite}
+.bd-stage .bc{width:27%}
+.bd-stage .f1{right:1%;top:27%;transform:rotate(11deg);z-index:3}
+.bd-stage .f2{right:12%;top:7%;transform:rotate(6deg);z-index:2}
+.bd-stage .f3{left:36.5%;top:0;transform:rotate(0);z-index:1}
+.bd-stage .f4{left:12%;top:7%;transform:rotate(-6deg);z-index:2}
+.bd-stage .f5{left:1%;top:27%;transform:rotate(-11deg);z-index:3}
+.bd-stage .fr{right:3%;bottom:0;width:25%;transform:rotate(5deg);z-index:12}
+.bd-stage .fl{left:3%;bottom:0;width:25%;transform:rotate(-5deg);z-index:12}
+.bundle:hover .f1{transform:rotate(15deg) translate(8px,0)}
+.bundle:hover .f5{transform:rotate(-15deg) translate(-8px,0)}
+.bundle:hover .f2{transform:rotate(9deg) translate(4px,-6px)}
+.bundle:hover .f4{transform:rotate(-9deg) translate(-4px,-6px)}
+.bundle:hover .f3{transform:translateY(-10px)}
+.bd-badge{position:absolute;top:9%;left:24%;z-index:14;width:84px;height:84px;border-radius:50%;display:grid;place-items:center;align-content:center;text-align:center;background:linear-gradient(135deg,#C2405E,#A23B52 60%,#7E2A3E);color:#fff;font-family:var(--ui);font-size:.8rem;font-weight:600;line-height:1.1;box-shadow:0 14px 28px -12px rgba(162,59,82,.8),inset 0 0 0 3px rgba(255,255,255,.25);transform:rotate(-10deg)}
+.bd-badge b{display:block;font-family:var(--display);font-size:1.8rem;line-height:1}
+.bd-cap{font-family:var(--ui);font-size:.92rem;color:var(--fg-soft);text-align:center;line-height:1.7}
+.bd-cap b{color:var(--ink)}
+.bd-cap span{display:block;font-size:.8rem;color:var(--fg-mute)}
+.gcov{display:block;width:64px;height:auto;border-radius:1px 3px 3px 1px;box-shadow:0 12px 20px -10px rgba(30,20,5,.6),0 1px 3px rgba(30,20,5,.2);flex:none}
+.gcov.big{width:92px}
+@media (max-width:640px){
+  .bd-stage{width:min(360px,100%)}
+  .bd-badge{width:64px;height:64px;font-size:.66rem;left:20%}
+  .bd-badge b{font-size:1.35rem}
+  .gcov{width:56px}
+  .gcov.big{width:76px}
+}
+
+/* phone: show the bundle right under the headline, then price + button */
+@media (max-width:900px){
+  .hero-grid{display:flex;flex-direction:column;align-items:stretch;gap:0}
+  .hero-grid > div:first-child{display:contents}
+  .hero-grid > div:first-child > *{order:9}
+  .hero-grid > div:first-child > .pill{order:1;align-self:center}
+  .hero-grid > div:first-child > h1{order:2}
+  .hero-grid .bundle{order:3;margin:0 0 1.6rem}
+  .hero-grid > div:first-child > .hero-price{order:4}
+  .hero-grid > div:first-child > .gift-badge{order:5;align-self:center}
+  .hero-grid > div:first-child > .hero-ctas{order:6}
+  .hero-grid > div:first-child > .cta-note{order:7;margin-bottom:2.2rem}
+  .hero-grid > div:first-child > .shift{order:8}
+}
 </style>
 </head>
 <body>
@@ -650,6 +769,7 @@ u.k{text-decoration:none;background:linear-gradient(transparent 60%,rgba(201,164
         <div class="row" role="listitem"><span class="from">بتصلي بسرعة ودماغك في حتة تانية</span><span class="ar" aria-hidden="true">←</span><span class="to">بتقف في الصلاة وإنت عارف إنك في حوار</span></div>
       </div>
       <div class="hero-price"><b>299ج</b><s>499ج</s><span>سعر الافتتاح</span><span class="deadline" data-deadline hidden></span></div>
+      <a class="gift-badge" href="#offerTop"><span class="gb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><span>+ 7 هدايا مجانًا قيمتها <b>1,043ج</b></span><span class="dots" aria-hidden="true"><i style="background:#A23B52"></i><i style="background:#2F5597"></i><i style="background:#1F7A72"></i><i style="background:#B85A2B"></i><i style="background:#2E7D4F"></i><i style="background:#6E3F8C"></i><i style="background:#B07A12"></i></span></a>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="#offer">احصل على الكتاب وابدأ التحدي</a>
         <a class="tlink" href="#quiz">أو جاوب 6 أسئلة الأول (دقيقة) ↓</a>
@@ -657,19 +777,19 @@ u.k{text-decoration:none;background:linear-gradient(transparent 60%,rgba(201,164
       <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>إنستاباي أو أي محفظة</span><span>بيوصلك على واتساب</span></div>
       <p class="credit">مبني على أفكار دورة «من أنا وِلَم أنا؟» للدكتور عبد الرحمن ذاكر الهاشمي، ومشروح بأسلوب جديد ومعاه تمارين وقوالب ونظام تطبيق.</p>
     </div>
-    <div class="device rv" aria-hidden="true">
-      <div class="phone-wrap">
-        <div class="sticker"><div><b>٣٠</b>يوم تحدي</div></div>
-        <div class="phone"><div class="screen"><div class="cover">
-          <div class="c-top">رحلة من «عايش» إلى «عارف ليه عايش»</div>
-          <div class="c-title">من أنا…<span>وِلَم أنا؟</span></div>
-          <div><div class="emblem"><svg viewBox="0 0 40 40" fill="none" aria-hidden="true"><circle cx="20" cy="20" r="18.5" stroke="currentColor" stroke-width="1"/><circle cx="20" cy="20" r="15" stroke="currentColor" stroke-width=".6" opacity=".55"/><circle cx="20" cy="16.4" r="3.6" fill="currentColor"/><path d="M18.1 18.6h3.8l1.4 9.2h-6.6z" fill="currentColor"/></svg></div><div class="c-sub">كتاب بالعامية · Playbook 30 يوم</div></div>
-        </div></div></div>
-        <div class="sheet">
-          <b>ورقة التحدي · الأسبوع 1</b>
-          <div class="g"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i></div>
-        </div>
+    <div class="bundle rv">
+      <div class="bd-stage">
+        <img class="bc f1" src="images/bonus-2.jpg" alt="غلاف هدية: سكريبتات المفاتيح" width="610" height="873" loading="eager">
+        <img class="bc f2" src="images/bonus-3.jpg" alt="غلاف هدية: من السماع للتطبيق" width="610" height="873" loading="eager">
+        <img class="bc f3" src="images/bonus-5.jpg" alt="غلاف هدية: ملحق المراجعة" width="610" height="873" loading="eager">
+        <img class="bc f4" src="images/bonus-6.jpg" alt="غلاف هدية: خريطة الأمان" width="610" height="873" loading="eager">
+        <img class="bc f5" src="images/bonus-7.jpg" alt="غلاف هدية: مقياس العدّاد" width="610" height="873" loading="eager">
+        <img class="bk" src="images/book-cover.jpg" alt="غلاف كتاب «من أنا… ولِمَ أنا؟»" width="610" height="873">
+        <img class="bc fr" src="images/bonus-1.jpg" alt="غلاف هدية: نسخة شريك المسؤولية" width="610" height="873">
+        <img class="bc fl" src="images/bonus-4.jpg" alt="غلاف هدية: تحدي الـ30 يوم: نسخة التلاجة" width="610" height="873">
+        <div class="bd-badge" aria-hidden="true"><b>+٧</b>هدايا</div>
       </div>
+      <div class="bd-cap">الحزمة الكاملة: <b>الكتاب + 7 هدايا</b><span>كلهم PDF بيوصلوك على واتساب</span></div>
     </div>
   </div>
 </header>
@@ -722,6 +842,7 @@ u.k{text-decoration:none;background:linear-gradient(transparent 60%,rgba(201,164
     <h2>بلاش بكره يبقى <em>نفس اليوم.</em></h2>
     <p class="cs-sub">كتاب بالعامية + تحدي 30 يوم، كل يوم خطوة واحدة من 10 لـ 30 دقيقة.</p>
     <div class="hero-price"><b>299ج</b><s>499ج</s><span>سعر الافتتاح</span><span class="deadline" data-deadline hidden></span></div>
+      <a class="gift-badge" href="#offerTop"><span class="gb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><span>+ 7 هدايا مجانًا قيمتها <b>1,043ج</b></span><span class="dots" aria-hidden="true"><i style="background:#A23B52"></i><i style="background:#2F5597"></i><i style="background:#1F7A72"></i><i style="background:#B85A2B"></i><i style="background:#2E7D4F"></i><i style="background:#6E3F8C"></i><i style="background:#B07A12"></i></span></a>
     <a class="btn btn-primary" href="#offer" data-cta="1">ابدأ التحدي النهارده بـ 299ج</a>
     <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>إنستاباي أو أي محفظة</span><span>بيوصلك على واتساب</span></div>
   </div>
@@ -793,6 +914,7 @@ u.k{text-decoration:none;background:linear-gradient(transparent 60%,rgba(201,164
     <h2>المرة دي ابدأ من <em>أول حلقة.</em></h2>
     <p class="cs-sub">مش بالعافية ولا بالحماس. 9 فصول بتبدأ من الخاطرة، وخطة 30 يوم بتكمّل معاك بعد ما الحماس يخلص.</p>
     <div class="hero-price"><b>299ج</b><s>499ج</s><span>سعر الافتتاح</span><span class="deadline" data-deadline hidden></span></div>
+      <a class="gift-badge" href="#offerTop"><span class="gb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><span>+ 7 هدايا مجانًا قيمتها <b>1,043ج</b></span><span class="dots" aria-hidden="true"><i style="background:#A23B52"></i><i style="background:#2F5597"></i><i style="background:#1F7A72"></i><i style="background:#B85A2B"></i><i style="background:#2E7D4F"></i><i style="background:#6E3F8C"></i><i style="background:#B07A12"></i></span></a>
     <a class="btn btn-primary" href="#offer" data-cta="2">احصل على الكتاب وابدأ التحدي</a>
     <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>بيوصلك على واتساب</span></div>
   </div>
@@ -865,6 +987,7 @@ u.k{text-decoration:none;background:linear-gradient(transparent 60%,rgba(201,164
     <h2>الكتاب + 7 هدايا <em>بـ 299ج بس.</em></h2>
     <p class="cs-sub">قيمتهم في العرض 1,542ج. يعني أقل من 10 جنيه في اليوم على 30 يوم، والسعر بيرجع 499ج بعد الافتتاح.</p>
     <div class="hero-price"><b>299ج</b><s>499ج</s><span>سعر الافتتاح</span><span class="deadline" data-deadline hidden></span></div>
+      <a class="gift-badge" href="#offerTop"><span class="gb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><span>+ 7 هدايا مجانًا قيمتها <b>1,043ج</b></span><span class="dots" aria-hidden="true"><i style="background:#A23B52"></i><i style="background:#2F5597"></i><i style="background:#1F7A72"></i><i style="background:#B85A2B"></i><i style="background:#2E7D4F"></i><i style="background:#6E3F8C"></i><i style="background:#B07A12"></i></span></a>
     <a class="btn btn-primary" href="#offer" data-cta="3">اطلب نسختك دلوقتي</a>
     <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>إنستاباي أو أي محفظة</span><span>بيوصلك على واتساب</span></div>
   </div>
@@ -937,23 +1060,70 @@ u.k{text-decoration:none;background:linear-gradient(transparent 60%,rgba(201,164
       <p class="pz" id="pzOffer" hidden></p>
       <div class="eyebrow">العرض</div>
       <h2 class="display s">كل اللي محتاجه <em>علشان تبدأ صفحة جديدة.</em></h2>
+      <p class="sub">الكتاب، ومعاه <u class="k">7 هدايا مجانًا</u> بتخلّيك تطبّق من أول يوم.</p>
     </div>
     <div class="offer-grid">
-      <ul class="stack">
-        <li class="item core rv"><div class="thumb t-book"><span>من أنا<br>ولم أنا</span></div><div><h3>كتاب «من أنا… وِلَم أنا؟»</h3><p>9 فصول بالعامية + Playbook 30 يوم + قوالب جاهزة</p></div><div class="val">499ج</div></li>
-        <li class="item fast rv"><div class="thumb t-book t-two"><span>من أنا<br>ولم أنا</span></div><div><h3>نسخة شريك المسؤولية <span class="tag">مع سعر الافتتاح بس</span></h3><p>نسخة تانية تبعتها لشريك حياتك أو صاحبك. اتنين بيبدأوا بتمن واحد.</p></div><div class="val">299ج</div></li>
-        <li class="item rv"><div class="thumb t-chat"></div><div><h3>سكريبتات المفاتيح</h3><p>20 موقف حقيقي (حماة، شريك، مدير، صاحب): تقول إيه وتسأل نفسك إيه قبل ما ترد.</p></div><div class="val">199ج</div></li>
-        <li class="item rv"><div class="thumb t-play"></div><div><h3>من السماع للتطبيق</h3><p>حلقات الدورة الـ8: الفكرة في 3 سطور، وتمرين يطبّقها في 24 ساعة.</p></div><div class="val">149ج</div></li>
-        <li class="item rv"><div class="thumb t-grid"></div><div><h3>تحدي الـ30 يوم: نسخة التلاجة</h3><p>4 ورقات طباعة بخانات علامة وعدّاد Streak. أصعب تتنسي من PDF في الموبايل.</p></div><div class="val">149ج</div></li>
-        <li class="item rv"><div class="thumb t-lines"></div><div><h3>ملحق المراجعة</h3><p>كل حديث في الكتاب بدرجته ومصدره، واللي ضعيف مكتوب إنه ضعيف.</p></div><div class="val">99ج</div></li>
-        <li class="item rv"><div class="thumb t-map"></div><div><h3>خريطة الأمان</h3><p>إمتى الكتاب يكفيك، وإمتى محتاج مختص.</p></div><div class="val">99ج</div></li>
-        <li class="item rv"><div class="thumb t-gauge"></div><div><h3>مقياس العدّاد</h3><p>12 سؤال تعرف منهم إنت فين النهارده، وتبدأ من أنهي فصل.</p></div><div class="val">49ج</div></li>
-      </ul>
+      <div class="stack-wrap">
+        <div class="main-item rv">
+          <div class="mi-lbl">المنتج الأساسي</div>
+          <div class="mi-row"><img class="gcov big" src="images/book-cover.jpg" alt="غلاف الكتاب" width="610" height="873" loading="lazy">
+            <div><h3>كتاب «من أنا… وِلَم أنا؟»</h3><p>9 فصول بالعامية + Playbook 30 يوم + قوالب جاهزة</p><div class="mi-val">قيمته 499ج</div></div></div>
+        </div>
+        <div class="gifts-head rv"><span class="gh-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><div><b>+ 7 هدايا مجانًا معاك</b><small>قيمتهم 1,043ج… بتاخدهم كلهم مع الكتاب</small></div></div>
+        <ul class="gifts">
+          <li class="gift rv" style="--c:#A23B52">
+            <div class="g-rib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>هدية ١</div>
+            <div class="g-top"><img class="gcov" src="images/bonus-1.jpg" alt="غلاف نسخة شريك المسؤولية" width="610" height="873" loading="lazy"><div class="g-val"><s>قيمتها 299ج</s><b>مجانًا</b></div></div>
+            <h3>نسخة شريك المسؤولية</h3><p>نسخة تانية تبعتها لشريك حياتك أو صاحبك. اتنين بيبدأوا بتمن واحد.</p><span class="g-only">مع سعر الافتتاح بس</span>
+          </li>
+          <li class="gift rv" style="--c:#2F5597">
+            <div class="g-rib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>هدية ٢</div>
+            <div class="g-top"><img class="gcov" src="images/bonus-2.jpg" alt="غلاف سكريبتات المفاتيح" width="610" height="873" loading="lazy"><div class="g-val"><s>قيمتها 199ج</s><b>مجانًا</b></div></div>
+            <h3>سكريبتات المفاتيح</h3><p>20 موقف حقيقي (حماة، شريك، مدير، صاحب): تقول إيه وتسأل نفسك إيه قبل ما ترد.</p>
+          </li>
+          <li class="gift rv" style="--c:#1F7A72">
+            <div class="g-rib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>هدية ٣</div>
+            <div class="g-top"><img class="gcov" src="images/bonus-3.jpg" alt="غلاف من السماع للتطبيق" width="610" height="873" loading="lazy"><div class="g-val"><s>قيمتها 149ج</s><b>مجانًا</b></div></div>
+            <h3>من السماع للتطبيق</h3><p>حلقات الدورة الـ8: الفكرة في 3 سطور، وتمرين يطبّقها في 24 ساعة.</p>
+          </li>
+          <li class="gift rv" style="--c:#B85A2B">
+            <div class="g-rib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>هدية ٤</div>
+            <div class="g-top"><img class="gcov" src="images/bonus-4.jpg" alt="غلاف تحدي الـ30 يوم: نسخة التلاجة" width="610" height="873" loading="lazy"><div class="g-val"><s>قيمتها 149ج</s><b>مجانًا</b></div></div>
+            <h3>تحدي الـ30 يوم: نسخة التلاجة</h3><p>4 ورقات طباعة بخانات علامة وعدّاد Streak. أصعب تتنسي من PDF في الموبايل.</p>
+          </li>
+          <li class="gift rv" style="--c:#2E7D4F">
+            <div class="g-rib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>هدية ٥</div>
+            <div class="g-top"><img class="gcov" src="images/bonus-5.jpg" alt="غلاف ملحق المراجعة" width="610" height="873" loading="lazy"><div class="g-val"><s>قيمتها 99ج</s><b>مجانًا</b></div></div>
+            <h3>ملحق المراجعة</h3><p>كل حديث في الكتاب بدرجته ومصدره، واللي ضعيف مكتوب إنه ضعيف.</p>
+          </li>
+          <li class="gift rv" style="--c:#6E3F8C">
+            <div class="g-rib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>هدية ٦</div>
+            <div class="g-top"><img class="gcov" src="images/bonus-6.jpg" alt="غلاف خريطة الأمان" width="610" height="873" loading="lazy"><div class="g-val"><s>قيمتها 99ج</s><b>مجانًا</b></div></div>
+            <h3>خريطة الأمان</h3><p>إمتى الكتاب يكفيك، وإمتى محتاج مختص.</p>
+          </li>
+          <li class="gift rv" style="--c:#B07A12">
+            <div class="g-rib"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg>هدية ٧</div>
+            <div class="g-top"><img class="gcov" src="images/bonus-7.jpg" alt="غلاف مقياس العدّاد" width="610" height="873" loading="lazy"><div class="g-val"><s>قيمتها 49ج</s><b>مجانًا</b></div></div>
+            <h3>مقياس العدّاد</h3><p>12 سؤال تعرف منهم إنت فين النهارده، وتبدأ من أنهي فصل.</p>
+          </li>
+        </ul>
+      </div>
       <aside class="price-card rv">
         <div class="pc-top">عرض الافتتاح</div>
-        <div class="total"><span>القيمة الإجمالية</span><s>1,542ج</s></div>
-        <div class="total"><span>السعر بعد الافتتاح</span><s>499ج</s></div>
+        <ul class="receipt">
+          <li><span>الكتاب + Playbook 30 يوم</span><span>499ج</span></li>
+          <li style="--c:#A23B52"><span><i></i>نسخة شريك المسؤولية</span><span>299ج</span></li>
+          <li style="--c:#2F5597"><span><i></i>سكريبتات المفاتيح</span><span>199ج</span></li>
+          <li style="--c:#1F7A72"><span><i></i>من السماع للتطبيق</span><span>149ج</span></li>
+          <li style="--c:#B85A2B"><span><i></i>تحدي الـ30 يوم: نسخة التلاجة</span><span>149ج</span></li>
+          <li style="--c:#2E7D4F"><span><i></i>ملحق المراجعة</span><span>99ج</span></li>
+          <li style="--c:#6E3F8C"><span><i></i>خريطة الأمان</span><span>99ج</span></li>
+          <li style="--c:#B07A12"><span><i></i>مقياس العدّاد</span><span>49ج</span></li>
+          <li class="r-total"><span>القيمة كلها</span><s>1,542ج</s></li>
+        </ul>
         <div class="now">299<small> جنيه</small></div>
+        <div class="save">إنت بتوفّر <b>1,243ج</b></div>
+        <div class="total"><span>السعر بعد الافتتاح</span><s>499ج</s></div>
         <div class="deadline" data-deadline hidden></div>
         <div class="per">أقل من 10 جنيه في اليوم على 30 يوم.</div>
         <div class="co" id="buy-section">
@@ -1086,6 +1256,7 @@ u.k{text-decoration:none;background:linear-gradient(transparent 60%,rgba(201,164
     <p class="display s rv">«أنا بخاف من التوقف<br><em>أكتر من خوفي من التغيير.</em>»</p>
     <p class="sub rv" style="margin-inline:auto">لو قريت لحد هنا وحسيت إن الكلام ده عنك… فهو عنك. مش محتاج تبقى جاهز. <u class="k">محتاج تبدأ، حتى لو بدأت غلط.</u></p>
     <a class="btn btn-primary rv" href="#offer">احصل على الكتاب وابدأ النهارده بـ 299ج</a>
+    <div style="margin-top:1.2rem"><a class="gift-badge" href="#offerTop"><span class="gb-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="18" height="4" rx="1"/><path d="M12 8v13M19 12v7a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-7"/><path d="M7.5 8a2.5 2.5 0 0 1 0-5C10 3 12 8 12 8s2-5 4.5-5a2.5 2.5 0 0 1 0 5"/></svg></span><span>+ 7 هدايا مجانًا قيمتها <b>1,043ج</b></span><span class="dots" aria-hidden="true"><i style="background:#A23B52"></i><i style="background:#2F5597"></i><i style="background:#1F7A72"></i><i style="background:#B85A2B"></i><i style="background:#2E7D4F"></i><i style="background:#6E3F8C"></i><i style="background:#B07A12"></i></span></a></div>
     <div class="cta-note"><span>ضمان 7 أيام تطبيق</span><span>إنستاباي أو أي محفظة</span><span>بيوصلك على واتساب</span></div>
   </div>
 </section>
@@ -1102,7 +1273,7 @@ u.k{text-decoration:none;background:linear-gradient(transparent 60%,rgba(201,164
 
 <!-- sticky CTA -->
 <div class="sticky" id="sticky">
-  <div class="sp"><b>299ج</b><s>499ج</s><small id="stickyMsg">سعر الافتتاح · ضمان 7 أيام</small></div>
+  <div class="sp"><b>299ج</b><s>499ج</s><span class="sg">+7 هدايا</span><small id="stickyMsg">سعر الافتتاح · ضمان 7 أيام</small></div>
   <a class="btn btn-primary" href="#offer">ابدأ التحدي</a>
 </div>
 
@@ -1184,9 +1355,14 @@ function scrollToCheckout() {
   if (step2 && !step2.classList.contains('hidden')) goToStep1();
   const form = document.getElementById('checkout-form');
   const nameInput = document.getElementById('user-name');
-  const target = (form && !form.classList.contains('hidden')) ? nameInput : document.getElementById('buy-section');
+  // انزل لبداية كارت «عرض الافتتاح» علشان الهدايا تبان، والمؤشر يفضل في خانة الاسم
+  // على الكمبيوتر الكارت جنب الهدايا (sticky) فبننزل لأول العرض كله، وعلى الموبايل لأول الكارت
+  const wide = window.matchMedia('(min-width: 901px)').matches;
+  const target = (form && !form.classList.contains('hidden'))
+    ? document.querySelector(wide ? '.offer-grid' : '.price-card')
+    : document.getElementById('buy-section');
   if (target) {
-    const top = target.getBoundingClientRect().top + window.pageYOffset - 120;
+    const top = target.getBoundingClientRect().top + window.pageYOffset - 24;
     window.scrollTo({ top: Math.max(0, top), behavior: 'smooth' });
   }
   if (nameInput && form && !form.classList.contains('hidden')) {
